@@ -3,18 +3,13 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding-top: 1rem;
+    padding-top: 40px;
+    transition: all 0.3s ease;
+    background: #ebebeb;
 }
 
 .book-list-container.dark {
-    background-color: #333333; /* ダークモードの背景色 */
-}
-
-.book-list-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: center;
+    background-color: #333333;
 }
 
 .bookshelf {
@@ -25,98 +20,10 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    margin-top: -5rem;
-    /* ジャンルフィルターの高さ分だけ上に移動 */
-    padding-top: 0rem;
-    /* 上部の余白を増やして、ジャンルフィルターとの重なりを作る */
+    margin-top: 0;
+    padding-top: 1rem;
 }
 
-.bookshelf-row {
-    display: flex;
-    flex-direction: column;
-}
-
-.bookshelf-row:first-child {
-    margin-top: 8rem;
-    /* 最初の段の上に空間を追加 */
-}
-
-.bookshelf-row:last-child .shelf-divider {
-    margin-bottom: 60px;
-}
-
-.books-container {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    justify-content: center;
-}
-
-.book-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.book {
-    width: 120px;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5), inset 0px -3px 6px -2px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    background-color: #c0c0c0;
-    /* ライトモードのデフォルト色 */
-}
-
-.dark .book {
-    background-color: #929292;
-    color: #000000;
-}
-
-.book:hover {
-    transform: scale(1.05);
-}
-
-.book-title {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-size: 0.9rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 0.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
-    -webkit-box-orient: vertical;
-    box-orient: vertical;
-}
-
-
-.shelf-divider {
-    height: 21px;
-    background-color: #858383;
-    margin-bottom: 140px;
-    border-radius: 4px;
-    box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
-    width: 85%;
-    /* 追加: 幅を80%に設定 */
-    margin-left: auto;
-    /* 追加: 中央揃えのため */
-    margin-right: auto;
-    /* 追加: 中央揃えのため */
-}
-
-.dark .shelf-divider {
-    background-color: #111111;
-}
-
-
-/* スクロールバーのスタイリング */
 .bookshelf::-webkit-scrollbar {
     width: 8px;
 }
@@ -134,7 +41,17 @@
     background: #555;
 }
 
-/* レスポンシブデザイン */
+/* Dark mode styles */
+.dark .book {
+    background-color: #929292;
+    color: #000000;
+}
+
+.dark .shelf-divider {
+    background-color: #111111;
+}
+
+/* Responsive design */
 @media (max-width: 1200px) {
     .book {
         width: 100px;

@@ -1,107 +1,39 @@
 "use client"
 
-import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
-import "./LoginForm.css";
-import user_icon from "../../../public/person.png";
-import email_icon from "../../../public/email.png";
-import password_icon from "../../../public/password.png";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import "./LoginForm.css";  // このインポートはそのままで問題ありません
+import user_icon from "~/public/person.png";
+import email_icon from "~/public/email.png";
+import password_icon from "~/public/password.png";
 import { FaGoogle } from "react-icons/fa";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { auth } from '../../../firebase';
-
-interface FormValues {
-    username: string;
-    email: string;
-    password: string;
-}
-
-interface FormErrors {
-    username?: string;
-    email?: string;
-    password?: string;
-    auth?: string;
-}
+import { useLoginForm } from '@/hooks/useLoginForm';
+import { useAuth } from '@/hooks/useAuth';
 
 const LoginForm: React.FC = () => {
-    const initialValues: FormValues = { username: "", email: "", password: "" };
-    const [formValues, setFormValues] = useState<FormValues>(initialValues);
-    const [formErrors, setFormErrors] = useState<FormErrors>({});
-    const [action, setAction] = useState<"ログイン" | "ユーザー登録">("ログイン");
+    const {
+        formValues,
+        formErrors,
+        action,
+        handleChange,
+        handleSubmit,
+        signInWithGoogle,
+        setAction,
+    } = useLoginForm();
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-    }
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const errors = validate(formValues);
-        setFormErrors(errors);
-
-        if (Object.keys(errors).length === 0) {
-            try {
-                if (action === "ユーザー登録") {
-                    await auth.createUserWithEmailAndPassword(formValues.email, formValues.password);
-                    const user = auth.currentUser;
-                    if (user) {
-                        await user.updateProfile({
-                            displayName: formValues.username
-                        });
-                    }
-                } else {
-                    await auth.signInWithEmailAndPassword(formValues.email, formValues.password);
-                }
-                console.log(action + "に成功しました");
-            } catch (error) {
-                console.error(error);
-                if (error instanceof Error) {
-                    setFormErrors({ ...formErrors, auth: error.message });
-                }
-            }
-        }
-    }
-
-    const validate = (values: FormValues): FormErrors => {
-        const errors: FormErrors = {};
-        const regex = /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
-
-        if (!values.username && action === "ユーザー登録") {
-            errors.username = "ユーザー名を入力してください";
-        }
-        if (!values.email) {
-            errors.email = "メールアドレスを入力してください";
-        } else if (!regex.test(values.email)) {
-            errors.email = "正しいメールアドレスを入力してください"
-        }
-        if (!values.password) {
-            errors.password = "パスワードを入力してください";
-        } else if (values.password.length < 6) {
-            errors.password = "6文字以上のパスワードを入力してください"
-        }
-        return errors;
-    };
-
-    const signInWithGoogle = async () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        try {
-            await auth.signInWithPopup(provider);
-            console.log("Googleログインに成功しました");
-        } catch (error) {
-            console.error("Googleログインエラー:", error);
-            if (error instanceof Error) {
-                if (error.name === 'auth/popup-closed-by-user') {
-                    setFormErrors({ ...formErrors, auth: "ログインがキャンセルされました。再度お試しください。" });
-                } else {
-                    setFormErrors({ ...formErrors, auth: "Googleログインに失敗しました。再度お試しください。" });
-                }
-            }
-        }
-    }
+    const { user, loading, authChecked } = useAuth(false);
+    const router = useRouter();
 
     useEffect(() => {
-        setFormErrors({});
-    }, [action]);
+        if (authChecked && user) {
+            router.push('/books');
+        }
+    }, [user, authChecked, router]);
+
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <form onSubmit={handleSubmit} className='wrapper'>

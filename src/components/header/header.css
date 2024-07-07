@@ -1,12 +1,16 @@
 .navbar {
-    width: 100%; /* 幅を100%に変更 */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    padding: 10px 5%; /* パディングを調整 */
+    padding: 10px 5%; 
     transition: 0.5s;
-    box-sizing: border-box; /* ボックスサイズの計算方法を変更 */
+    box-sizing: border-box;
+        position: fixed; /* 固定位置に設定 */
+    top: 0; /* 画面の上端に配置 */
+    left: 0; /* 画面の左端に配置 */
+    z-index: 1000; /* 他の要素より前面に表示 */
 }
 
 
