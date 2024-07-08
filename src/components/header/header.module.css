@@ -8,19 +8,23 @@
     padding: 10px 5%; 
     transition: 0.5s;
     box-sizing: border-box;
-    position: fixed; /* 固定位置に設定 */
-    top: 0; /* 画面の上端に配置 */
-    left: 0; /* 画面の左端に配置 */
-    z-index: 1000; /* 他の要素より前面に表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
+.dark {
+    background: #000;
+    color: #fff;
+}
 
 .logo {
     width: 220px;
     cursor: pointer;
 }
 
-.search-box {
+.searchBox {
     flex: 1;
     display: flex;
     height: 50px;
@@ -32,7 +36,7 @@
     margin: 0 20px;
 }
 
-.search-box input {
+.searchBox input {
     flex: 1;
     padding: 6px;
     background: transparent;
@@ -43,23 +47,23 @@
     min-width: 0;
 }
 
-.search-box input::placeholder {
+.searchBox input::placeholder {
     color: #fff;
 }
 
-.search-box img {
+.searchBox img {
     width: 20px;
     cursor: pointer;
 }
 
-.nav-buttons {
+.navButtons {
     display: flex;
     align-items: center;
 }
 
-.logout-button,
-.theme-toggle-button {
-    font-size : 50px;
+.logoutButton,
+.themeToggleButton {
+    font-size: 50px;
     cursor: pointer;
     padding: 5px;
     display: flex;
@@ -67,13 +71,13 @@
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.logout-button:hover,
-.theme-toggle-button:hover {
+.logoutButton:hover,
+.themeToggleButton:hover {
     transform: scale(1.1); 
     filter: brightness(1.2);
 }
 
-.vertical-divider {
+.verticalDivider {
     width: 4px;
     height: 30px;
     background: #000000;
@@ -81,28 +85,23 @@
     margin: 0 14px;
 }
 
-.dark .header {
-    background: #000;
-    color: #fff;
-}
-
-.dark .search-box {
+.dark .searchBox {
     background: #fff;
 }
 
-.dark .search-box input {
+.dark .searchBox input {
     color: #222;
 }
 
-.dark .search-box input::placeholder {
+.dark .searchBox input::placeholder {
     color: #222;
 }
 
-.dark .vertical-divider {
+.dark .verticalDivider {
     background: #ffffff;
 }
 
-.dark .logout-button:hover,
-.dark .theme-toggle-button:hover {
+.dark .logoutButton:hover,
+.dark .themeToggleButton:hover {
     filter: brightness(1.5); 
 }

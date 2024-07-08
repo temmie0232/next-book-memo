@@ -14,7 +14,7 @@
     transform: scale(1.05);
 }
 
-.book-title {
+.bookTitle {
     writing-mode: vertical-rl;
     text-orientation: mixed;
     font-size: 0.9rem;
@@ -28,4 +28,9 @@
     line-clamp: 5;
     -webkit-box-orient: vertical;
     box-orient: vertical;
+}
+
+.bookLink {
+    text-decoration: none;
+    color: inherit;
 }

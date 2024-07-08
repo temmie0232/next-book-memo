@@ -1,4 +1,4 @@
-.genre-filter {
+.genreFilter {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -19,7 +19,7 @@
     transition: all 0.3s ease;
 }
 
-.genre-button {
+.genreButton {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(204, 204, 204, 0.8);
     border-radius: 20px;
@@ -30,32 +30,32 @@
     color: #333;
 }
 
-.genre-button:hover {
+.genreButton:hover {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.genre-button.active {
+.active {
     background-color: rgba(255, 255, 255, 0.9);
     font-weight: bold;
     transform: scale(1.05);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.dark .genre-filter {
+:global(.dark) .genreFilter {
     background-color: rgba(31, 31, 31, 0.7);
 }
 
-.dark .genre-button {
+:global(.dark) .genreButton {
     background-color: #3b3b3b;
     border-color: rgba(80, 80, 80, 0.8);
     color: #e0e0e0;
 }
 
-.dark .genre-button:hover {
+:global(.dark) .genreButton:hover {
     background-color: #404040;
 }
 
-.dark .genre-button.active {
+:global(.dark) .active {
     background-color: #505050;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }

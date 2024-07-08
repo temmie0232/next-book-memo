@@ -1,17 +1,17 @@
-.bookshelf-row {
+.bookshelfRow {
     display: flex;
     flex-direction: column;
 }
 
-.bookshelf-row:first-child {
+.bookshelfRow:first-child {
     margin-top: 8rem;
 }
 
-.bookshelf-row:last-child .shelf-divider {
+.bookshelfRow:last-child .shelfDivider {
     margin-bottom: 60px;
 }
 
-.books-container {
+.booksContainer {
     display: flex;
     flex-wrap: nowrap;
     gap: 1rem;
@@ -19,7 +19,7 @@
     justify-content: center;
 }
 
-.shelf-divider {
+.shelfDivider {
     height: 21px;
     background-color: #858383;
     margin-bottom: 140px;
