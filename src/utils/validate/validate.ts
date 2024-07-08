@@ -1,6 +1,16 @@
 import { FormValues, FormErrors, ActionType } from './validate.types';
 
-// フォームの入力値を検証し、エラーを返す
+
+/**
+ * フォームの入力値を検証し、エラーを返す関数
+ * 
+ * ログインフォーム・ユーザー登録フォームの入力値を検証し、
+ * 見つかったエラーを含むオブジェクトを返す。
+ *
+ * @param {FormValues} values - フォームの入力値を含むオブジェクト
+ * @param {ActionType} action - 現在のアクション（"ログイン" または "ユーザー登録"）
+ * @returns {FormErrors} 検証エラーを含むオブジェクト
+ */
 export const validate = (values: FormValues, action: ActionType): FormErrors => {
 
     // エラーメッセージを格納するオブジェクト

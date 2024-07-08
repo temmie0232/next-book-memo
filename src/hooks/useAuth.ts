@@ -5,6 +5,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import { useRouter } from 'next/navigation';
 
+/**
+ * 認証状態を管理し、必要に応じてリダイレクトを行うカスタムフック
+ * 
+ * @param {boolean} requireAuth - このページが認証を必要とするかどうか
+ * @returns {Object} 認証状態に関する情報
+ */
 export const useAuth = (requireAuth: boolean = false) => {
 
     // Firebase の認証状態を取得

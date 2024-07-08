@@ -4,7 +4,11 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { validate } from '@/utils/validate/validate';
 import { FormValues, FormErrors, ActionType } from '@/utils/validate/validate.types';
 
-
+/**
+ * ログインフォームの状態と機能を管理するカスタムフック
+ * 
+ * @returns {Object} フォームの状態と操作関数を含むオブジェクト
+ */
 export const useLoginForm = () => {
 
     // フォームの初期値
@@ -18,7 +22,10 @@ export const useLoginForm = () => {
     const [action, setAction] = useState<"ログイン" | "ユーザー登録">("ログイン");
 
 
-    // 入力フィールドの変更(値の書き換え)を処理するハンドラ
+    /**
+     * 入力フィールドの変更を処理するハンドラ
+     * @param {ChangeEvent<HTMLInputElement>} e - 変更イベント
+     */
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
         // e.target(input要素) から name(例: "username", "email") と value(現在の値) を分割代入
@@ -36,12 +43,18 @@ export const useLoginForm = () => {
 
     // フォーム送信を処理するハンドラ
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+
+        // フォームのデフォルトの動作(リロードなど)を防ぐ
         e.preventDefault();
+
+        // validate関数でフォームの値をチェックし、エラーがあればそれを状態にセット
         const errors = validate(formValues, action);
         setFormErrors(errors);
 
+        // エラーがないとき
         if (Object.keys(errors).length === 0) {
             try {
+                // ユーザー登録
                 if (action === "ユーザー登録") {
                     const userCredential = await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
                     if (userCredential.user) {
@@ -49,15 +62,17 @@ export const useLoginForm = () => {
                             displayName: formValues.username
                         });
                     }
-                    // 変更: アラートダイアログを表示
                     alert("ユーザー登録が完了しました！\n画面が切り替わります。");
                     setFormValues(initialValues);
-                    setAction("ログイン");
-                } else {
+                }
+                // ログイン
+                else {
                     await signInWithEmailAndPassword(auth, formValues.email, formValues.password);
                 }
                 console.log(action + "に成功しました");
-            } catch (error) {
+            }
+            // エラー発生時
+            catch (error) {
                 console.error(error);
                 if (error instanceof Error) {
                     setFormErrors({ ...formErrors, auth: error.message });
@@ -67,9 +82,11 @@ export const useLoginForm = () => {
     }
 
 
-    // Googleでサインインする関数
+    /**
+     * Googleでサインインする関数
+     */
     const signInWithGoogle = async () => {
-        // 1. Google認証プロバイダーのインスタンスを作成
+        // Google認証プロバイダーのインスタンスを作成
         const provider = new GoogleAuthProvider();
 
         try {
