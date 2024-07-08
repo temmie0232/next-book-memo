@@ -1,6 +1,6 @@
 "use client"
 
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/contexts/theme/useTheme';
 import LoginForm from '@/features/LoginForm/LoginForm';
 import { useAuth } from '@/hooks/useAuth';
 

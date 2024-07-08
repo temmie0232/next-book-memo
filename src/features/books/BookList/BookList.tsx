@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './BookList.css';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/contexts/theme/useTheme';
 import { BookType } from '@/types/bookType';
 import { generateBooks } from '@/utils/generateBooks/generateBooks';
 import { useBookshelfLayout } from '@/hooks/useBookshelfLayout';

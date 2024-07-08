@@ -10,11 +10,11 @@ import logo_dark from "~/public/logo-white.png";
 import search_icon_light from "~/public/search-w.png";
 import search_icon_dark from "~/public/search-b.png";
 import { auth } from '~/firebase';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/contexts/theme/useTheme';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 
-const NavBar: React.FC = () => {
+const Header: React.FC = () => {
     const { theme, setTheme } = useTheme();
     const router = useRouter();
 
@@ -32,7 +32,7 @@ const NavBar: React.FC = () => {
     };
 
     return (
-        <div className='navbar'>
+        <div className='header'>
             <div className="logo-container">
                 <Image
                     src={theme === "light" ? logo_light : logo_dark}
@@ -85,4 +85,4 @@ const NavBar: React.FC = () => {
     );
 };
 
-export default NavBar;
+export default Header;
