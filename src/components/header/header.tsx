@@ -4,6 +4,7 @@ import React from 'react';
 import "./header.css";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
+import { FaSearch } from "react-icons/fa";
 import Image from 'next/image';
 import logo_light from "~/public/logo-black.png";
 import logo_dark from "~/public/logo-white.png";
@@ -47,13 +48,7 @@ const Header: React.FC = () => {
             <div className="search-box">
                 <input type="text" placeholder='Search...' />
                 <div className="search-icon-container">
-                    <Image
-                        src={theme === "light" ? search_icon_light : search_icon_dark}
-                        alt="Search icon"
-                        width={16}
-                        height={16}
-                        objectFit="contain"
-                    />
+                    <FaSearch className={`w-6 h-6 ${theme === 'dark' ? 'text-black' : 'text-white'}`} />
                 </div>
             </div>
 
