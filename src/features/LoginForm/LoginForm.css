@@ -62,13 +62,15 @@
     border-radius: 6px;
 }
 
-.input img {
+.input-icon {
     margin: 0px 30px;
+    font-size: 24px;
+    color: #797979;
 }
 
 .inputs input {
     height: 50px;
-    width: calc(100% - 60px); /* アイコンのスペースを考慮 */
+    width: calc(100% - 84px); /* アイコンのスペースを考慮 */
     background: transparent;
     border: none;
     outline: none;

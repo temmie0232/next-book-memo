@@ -2,13 +2,11 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "./LoginForm.css";  // このインポートはそのままで問題ありません
-import user_icon from "~/public/person.png";
-import email_icon from "~/public/email.png";
-import password_icon from "~/public/password.png";
+import "./LoginForm.css";
 import { FaGoogle } from "react-icons/fa";
 import { useLoginForm } from '@/hooks/useLoginForm';
 import { useAuth } from '@/hooks/useAuth';
+import { IoMdLock, IoMdMail, IoMdPerson } from 'react-icons/io';
 
 const LoginForm: React.FC = () => {
     const {
@@ -30,7 +28,6 @@ const LoginForm: React.FC = () => {
         }
     }, [user, authChecked, router]);
 
-
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -45,7 +42,7 @@ const LoginForm: React.FC = () => {
                 <div className="inputs">
                     {action === "ユーザー登録" && (
                         <div className='input'>
-                            <img src={user_icon.src} alt="" />
+                            <IoMdPerson className="input-icon" />
                             <input
                                 type="text"
                                 placeholder='Name'
@@ -57,7 +54,7 @@ const LoginForm: React.FC = () => {
                     )}
                     <p className="errorMsg">{formErrors.username}</p>
                     <div className="input">
-                        <img src={email_icon.src} alt="" />
+                        <IoMdMail className="input-icon" />
                         <input
                             type="email"
                             placeholder='Email'
@@ -68,7 +65,7 @@ const LoginForm: React.FC = () => {
                     </div>
                     <p className="errorMsg">{formErrors.email}</p>
                     <div className="input">
-                        <img src={password_icon.src} alt="" />
+                        <IoMdLock className="input-icon" />
                         <input
                             type="password"
                             placeholder='Password'
