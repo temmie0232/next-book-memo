@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "./LoginForm.css";
+import styles from "./LoginForm.module.css";
 import { FaGoogle } from "react-icons/fa";
 import { useLoginForm } from '@/hooks/useLoginForm';
 import { useAuth } from '@/hooks/useAuth';
@@ -33,16 +33,16 @@ const LoginForm: React.FC = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='wrapper'>
-            <div className='login_container'>
-                <div className='header'>
-                    <div className='text'>{action}</div>
-                    <div className='underline'></div>
+        <form onSubmit={handleSubmit} className={styles.wrapper}>
+            <div className={styles.loginContainer}>
+                <div className={styles.header}>
+                    <div className={styles.text}>{action}</div>
+                    <div className={styles.underline}></div>
                 </div>
-                <div className="inputs">
+                <div className={styles.inputs}>
                     {action === "ユーザー登録" && (
-                        <div className='input'>
-                            <IoMdPerson className="input-icon" />
+                        <div className={styles.input}>
+                            <IoMdPerson className={styles.inputIcon} />
                             <input
                                 type="text"
                                 placeholder='Name'
@@ -52,9 +52,9 @@ const LoginForm: React.FC = () => {
                             />
                         </div>
                     )}
-                    <p className="errorMsg">{formErrors.username}</p>
-                    <div className="input">
-                        <IoMdMail className="input-icon" />
+                    <p className={styles.errorMsg}>{formErrors.username}</p>
+                    <div className={styles.input}>
+                        <IoMdMail className={styles.inputIcon} />
                         <input
                             type="email"
                             placeholder='Email'
@@ -63,9 +63,9 @@ const LoginForm: React.FC = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <p className="errorMsg">{formErrors.email}</p>
-                    <div className="input">
-                        <IoMdLock className="input-icon" />
+                    <p className={styles.errorMsg}>{formErrors.email}</p>
+                    <div className={styles.input}>
+                        <IoMdLock className={styles.inputIcon} />
                         <input
                             type="password"
                             placeholder='Password'
@@ -74,26 +74,26 @@ const LoginForm: React.FC = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <p className="errorMsg">{formErrors.password}</p>
+                    <p className={styles.errorMsg}>{formErrors.password}</p>
                 </div>
-                {action === "ログイン" && <div className='forgot-password'>パスワードを忘れた場合<span>こちら</span>へ</div>}
-                <button type="submit" className='enter'>Enter</button>
-                {formErrors.auth && <p className="errorMsg">{formErrors.auth}</p>}
-                <div className='divider'>または</div>
-                <div className='google-login' onClick={signInWithGoogle}>
-                    <FaGoogle className='google-icon' />
+                {action === "ログイン" && <div className={styles.forgotPassword}>パスワードを忘れた場合<span>こちら</span>へ</div>}
+                <button type="submit" className={styles.enter}>Enter</button>
+                {formErrors.auth && <p className={styles.errorMsg}>{formErrors.auth}</p>}
+                <div className={styles.divider}>または</div>
+                <div className={styles.googleLogin} onClick={signInWithGoogle}>
+                    <FaGoogle className={styles.googleIcon} />
                     <span>Googleでログイン</span>
                 </div>
             </div>
-            <div className='submit-container'>
+            <div className={styles.submitContainer}>
                 <div
-                    className={action === "ユーザー登録" ? "submit gray" : "submit"}
+                    className={`${styles.submit} ${action === "ユーザー登録" ? styles.gray : ''}`}
                     onClick={() => { setAction("ログイン") }}
                 >
                     ログイン
                 </div>
                 <div
-                    className={action === "ログイン" ? "submit gray" : "submit"}
+                    className={`${styles.submit} ${action === "ログイン" ? styles.gray : ''}`}
                     onClick={() => { setAction("ユーザー登録") }}
                 >
                     登録

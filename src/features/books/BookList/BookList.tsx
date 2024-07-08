@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import './BookList.css';
+import styles from './BookList.module.css';
 import { useTheme } from '@/contexts/theme/useTheme';
 import { BookType } from '@/types/bookType';
 import { generateBooks } from '@/utils/generateBooks/generateBooks';
@@ -36,8 +36,8 @@ const BookList: React.FC<BookListProps> = ({ selectedGenre }) => {
     }
 
     return (
-        <div className={`book-list-container ${theme}`}>
-            <div className="bookshelf">
+        <div className={`${styles.bookListContainer} ${theme === 'dark' ? styles.dark : ''}`}>
+            <div className={styles.bookshelf}>
                 {bookShelves.map((shelfBooks, index) => (
                     <BookshelfRow key={index} books={shelfBooks} />
                 ))}

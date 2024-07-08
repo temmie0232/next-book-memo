@@ -1,5 +1,5 @@
 import React from 'react';
-import './GenreFilter.css';
+import styles from './GenreFilter.module.css';
 
 interface GenreFilterProps {
     genres: string[];
@@ -9,9 +9,9 @@ interface GenreFilterProps {
 
 const GenreFilter: React.FC<GenreFilterProps> = ({ genres, selectedGenre, onGenreSelect }) => {
     return (
-        <div className="genre-filter">
+        <div className={styles.genreFilter}>
             <button
-                className={`genre-button ${selectedGenre === 'すべて' ? 'active' : ''}`}
+                className={`${styles.genreButton} ${selectedGenre === 'すべて' ? styles.active : ''}`}
                 onClick={() => onGenreSelect('すべて')}
             >
                 すべて
@@ -19,7 +19,7 @@ const GenreFilter: React.FC<GenreFilterProps> = ({ genres, selectedGenre, onGenr
             {genres.map((genre) => (
                 <button
                     key={genre}
-                    className={`genre-button ${selectedGenre === genre ? 'active' : ''}`}
+                    className={`${styles.genreButton} ${selectedGenre === genre ? styles.active : ''}`}
                     onClick={() => onGenreSelect(genre)}
                 >
                     {genre}
