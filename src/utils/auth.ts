@@ -36,18 +36,20 @@ export const signIn = async (email: string, password: string): Promise<FirebaseU
 // Firestoreにユーザー情報を初期化する内部関数
 export const initializeUserInFirestore = async (user: User, username?: string): Promise<void> => {
     const userDocRef = doc(db, 'users', user.uid);
-    const userDoc = await getDoc(userDocRef);
 
-    if (!userDoc.exists()) {
-        const userData: UserData = {
-            email: user.email,
-            displayName: username || user.displayName || '',
-            initialized: true 
-        };
-        await setDoc(userDocRef, userData);
-        await initializeDefaultGenres(user.uid);
-    } else {
-        // ユーザードキュメントが既に存在する場合、initialized を true に更新
-        await setDoc(userDocRef, { initialized: true }, { merge: true });
-    }
+    const userData: UserData = {
+        email: user.email,
+        displayName: username || user.displayName || '',
+        initialized: true,
+        genresInitialized: false,
+        genres: []
+    };
+
+    await setDoc(userDocRef, userData, { merge: true });
+
+    await initializeDefaultGenres(user.uid);
+
+    await setDoc(userDocRef, { genresInitialized: true }, { merge: true });
+
+    console.log('User initialization completed:', user.uid);
 };
