@@ -1,40 +1,45 @@
 import { useState, useEffect } from 'react';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '~/firebase';
+import { useAuth } from '@/hooks/useAuth';
 
-export const useGenres = (userId: string | undefined) => {
+export const useGenres = () => {
     const [genres, setGenres] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
+    const { user } = useAuth();
 
     useEffect(() => {
-        if (!userId) {
+        setLoading(true);
+        setError(null);
+
+        if (!user) {
+            setGenres([]);
             setLoading(false);
             return;
         }
 
-        const userDocRef = doc(db, 'users', userId);
+        const userDocRef = doc(db, 'users', user.uid);
 
         const unsubscribe = onSnapshot(userDocRef,
             (doc) => {
                 if (doc.exists()) {
                     const userData = doc.data();
                     setGenres(userData.genres || []);
-                    setLoading(false);
                 } else {
                     setGenres([]);
-                    setLoading(false);
                 }
+                setLoading(false);
             },
             (err) => {
                 console.error("Error fetching genres:", err);
-                setError(err);
+                setError(err as Error);
                 setLoading(false);
             }
         );
 
         return () => unsubscribe();
-    }, [userId]);
+    }, [user]);
 
     return { genres, loading, error };
 };
