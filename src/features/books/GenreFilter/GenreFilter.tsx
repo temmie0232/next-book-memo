@@ -11,7 +11,7 @@ interface GenreFilterProps {
 
 const GenreFilter: React.FC<GenreFilterProps> = ({ selectedGenre, onGenreSelect }) => {
     const { user } = useAuth();
-    const { genres, loading, error } = useGenres(user?.uid);
+    const { genres, loading, error } = useGenres();
 
     if (loading) return <div>ジャンルを読み込み中...</div>;
     if (error) return <div>ジャンルの読み込みに失敗しました</div>;
