@@ -1,8 +1,8 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { auth } from '~/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { validate } from '@/utils/validate/validate';
-import { FormValues, FormErrors, ActionType } from '@/utils/validate/validate.types';
+import { validate } from '@/utils/validate';
+import { FormValues, FormErrors, ActionType } from '@/types/validate.types';
 
 /**
  * ログインフォームの状態と機能を管理するカスタムフック

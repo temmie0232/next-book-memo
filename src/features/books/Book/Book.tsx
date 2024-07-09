@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { BookType } from '@/types/bookType';
+import { BookType } from '@/types/book.types';
 import styles from './Book.module.css';
 
 interface BookProps {

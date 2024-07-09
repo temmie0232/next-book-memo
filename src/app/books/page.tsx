@@ -6,7 +6,7 @@ import Header from '@/components/header/header';
 import { useTheme } from '@/contexts/theme/useTheme';
 import styles from './style.module.css';
 import GenreFilter from '@/features/books/GenreFilter/GenreFilter';
-import { genres } from "@/types/bookType"
+import { genres } from "@/types/book.types"
 
 const BooksPage: React.FC = () => {
     const { theme } = useTheme();
