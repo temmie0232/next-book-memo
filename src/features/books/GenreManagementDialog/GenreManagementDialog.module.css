@@ -1,0 +1,17 @@
+.editIcon {
+    font-size: 50px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.editIcon:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.dialog {
+    z-index: 1100;
+}
