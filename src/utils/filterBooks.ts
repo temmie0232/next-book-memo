@@ -1,4 +1,4 @@
-import { BookType } from '@/types/bookType';
+import { BookType } from '@/types/book.types';
 
 /**
  * 指定されたジャンルに基づいて本をフィルタリングする関数

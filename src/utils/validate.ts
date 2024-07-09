@@ -1,4 +1,4 @@
-import { FormValues, FormErrors, ActionType } from './validate.types';
+import { FormValues, FormErrors, ActionType } from '../types/validate.types';
 
 
 /**
