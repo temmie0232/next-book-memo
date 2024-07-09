@@ -6,10 +6,13 @@ import Header from '@/components/header/header';
 import { useTheme } from '@/contexts/theme/useTheme';
 import styles from './style.module.css';
 import GenreFilter from '@/features/books/GenreFilter/GenreFilter';
-import { genres } from "@/types/book.types"
+import { useAuth } from '@/hooks/useAuth';
+import { useGenres } from '@/hooks/useGenres';
 
 const BooksPage: React.FC = () => {
     const { theme } = useTheme();
+    const { user } = useAuth();
+    const { genres, loading, error } = useGenres(user?.uid);
     const [selectedGenre, setSelectedGenre] = useState<string>('すべて');
 
     const handleGenreSelect = (genre: string) => {
@@ -20,7 +23,6 @@ const BooksPage: React.FC = () => {
         <div className={`${styles.booksPage} ${theme}`}>
             <Header />
             <GenreFilter
-                genres={genres}
                 selectedGenre={selectedGenre}
                 onGenreSelect={handleGenreSelect}
             />
