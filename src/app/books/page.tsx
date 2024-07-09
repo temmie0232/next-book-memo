@@ -12,7 +12,7 @@ import { useGenres } from '@/hooks/useGenres';
 const BooksPage: React.FC = () => {
     const { theme } = useTheme();
     const { user } = useAuth();
-    const { genres, loading, error } = useGenres(user?.uid);
+    const { genres, loading, error } = useGenres();
     const [selectedGenre, setSelectedGenre] = useState<string>('すべて');
 
     const handleGenreSelect = (genre: string) => {
