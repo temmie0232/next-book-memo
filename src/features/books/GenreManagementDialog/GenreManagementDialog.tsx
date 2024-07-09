@@ -4,7 +4,6 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -14,13 +13,38 @@ import { Label } from "@/components/ui/label";
 import { PlusCircle, Trash2 } from "lucide-react";
 import { CiEdit } from 'react-icons/ci';
 import styles from './GenreManagementDialog.module.css';
+import { useAuth } from '@/hooks/useAuth';
+import { useGenres } from '@/hooks/useGenres';
+import { addGenre, deleteGenre } from '@/utils/genreManager';
 
 const GenreManagementDialog = () => {
     const [newGenre, setNewGenre] = useState('');
-    const [genres, setGenres] = useState(['コミック', 'ミステリー', 'ファンタジー', 'ホラー', '恋愛', '専門書', '暮らし']);
+    const { user } = useAuth();
+    const { genres, loading, error } = useGenres();
+
+    const handleAddGenre = async () => {
+        if (user && newGenre.trim() !== '') {
+            try {
+                await addGenre(user.uid, newGenre.trim());
+                setNewGenre('');
+            } catch (error) {
+                console.error('ジャンルの追加に失敗しました:', error);
+            }
+        }
+    };
+
+    const handleDeleteGenre = async (genreName: string) => {
+        if (user) {
+            try {
+                await deleteGenre(user.uid, genreName);
+            } catch (error) {
+                console.error('ジャンルの削除に失敗しました:', error);
+            }
+        }
+    };
 
     return (
-        <Dialog >
+        <Dialog>
             <DialogTrigger asChild>
                 <div className={styles.editIcon}>
                     <CiEdit className="text-3xl dark:text-white" />
@@ -45,28 +69,31 @@ const GenreManagementDialog = () => {
                             className="col-span-3"
                         />
                     </div>
-                    <Button className="w-full">
+                    <Button className="w-full" onClick={handleAddGenre}>
                         <PlusCircle className="mr-2 h-4 w-4" /> ジャンルを追加
                     </Button>
                     <div className="mt-4">
                         <h4 className="mb-2 font-medium">現在のジャンル:</h4>
-                        <ul className="space-y-2">
-                            {genres.map((genre, index) => (
-                                <li key={index} className="flex items-center justify-between">
-                                    <span>{genre}</span>
-                                    <Button variant="ghost" size="sm">
-                                        <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                </li>
-                            ))}
-                        </ul>
+                        {loading ? (
+                            <p>読み込み中...</p>
+                        ) : error ? (
+                            <p>エラーが発生しました: {error.message}</p>
+                        ) : (
+                            <ul className="space-y-2">
+                                {genres.map((genre, index) => (
+                                    <li key={index} className="flex items-center justify-between">
+                                        <span>{genre}</span>
+                                        <Button variant="ghost" size="sm" onClick={() => handleDeleteGenre(genre)}>
+                                            <Trash2 className="h-4 w-4" />
+                                        </Button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
-                <DialogFooter>
-                    <Button type="submit">変更を保存</Button>
-                </DialogFooter>
             </DialogContent>
-        </Dialog >
+        </Dialog>
     );
 };
 
