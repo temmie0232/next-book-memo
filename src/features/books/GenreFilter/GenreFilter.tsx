@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './GenreFilter.module.css';
+import GenreManagementDialog from '@/features/books/GenreManagementDialog/GenreManagementDialog';
 
 interface GenreFilterProps {
     genres: string[];
@@ -9,22 +10,28 @@ interface GenreFilterProps {
 
 const GenreFilter: React.FC<GenreFilterProps> = ({ genres, selectedGenre, onGenreSelect }) => {
     return (
-        <div className={styles.genreFilter}>
-            <button
-                className={`${styles.genreButton} ${selectedGenre === 'すべて' ? styles.active : ''}`}
-                onClick={() => onGenreSelect('すべて')}
-            >
-                すべて
-            </button>
-            {genres.map((genre) => (
+        <div className={styles.genreFilterContainer}>
+            <div className={styles.genreFilter}>
                 <button
-                    key={genre}
-                    className={`${styles.genreButton} ${selectedGenre === genre ? styles.active : ''}`}
-                    onClick={() => onGenreSelect(genre)}
+                    className={`${styles.genreButton} ${selectedGenre === 'すべて' ? styles.active : ''}`}
+                    onClick={() => onGenreSelect('すべて')}
                 >
-                    {genre}
+                    すべて
                 </button>
-            ))}
+                {genres.map((genre) => (
+                    <button
+                        key={genre}
+                        className={`${styles.genreButton} ${selectedGenre === genre ? styles.active : ''}`}
+                        onClick={() => onGenreSelect(genre)}
+                    >
+                        {genre}
+                    </button>
+                ))}
+            </div>
+            <div className={styles.divider}></div>
+            <div className={styles.gmdContainer}>
+                <GenreManagementDialog />
+            </div>
         </div>
     );
 };
