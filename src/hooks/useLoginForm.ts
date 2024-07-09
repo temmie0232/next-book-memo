@@ -1,8 +1,9 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '~/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { validate } from '@/utils/validate';
 import { FormValues, FormErrors, ActionType } from '@/types/validate.types';
+import { signUp, signIn, initializeUserInFirestore } from '@/utils/auth';
 
 /**
  * ログインフォームの状態と機能を管理するカスタムフック
@@ -56,18 +57,13 @@ export const useLoginForm = () => {
             try {
                 // ユーザー登録
                 if (action === "ユーザー登録") {
-                    const userCredential = await createUserWithEmailAndPassword(auth, formValues.email, formValues.password);
-                    if (userCredential.user) {
-                        await updateProfile(userCredential.user, {
-                            displayName: formValues.username
-                        });
-                    }
+                    await signUp(formValues.email, formValues.password, formValues.username);
                     alert("ユーザー登録が完了しました！\n画面が切り替わります。");
                     setFormValues(initialValues);
                 }
                 // ログイン
                 else {
-                    await signInWithEmailAndPassword(auth, formValues.email, formValues.password);
+                    await signIn(formValues.email, formValues.password);
                 }
                 console.log(action + "に成功しました");
             }
@@ -91,7 +87,10 @@ export const useLoginForm = () => {
 
         try {
             // ポップアップウィンドウを使用してGoogleサインイン
-            await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, provider);
+            if (result.user) {
+                await initializeUserInFirestore(result.user);
+            }
 
             // サインインが成功した場合のログ出力
             console.log("Googleログインに成功しました");
