@@ -1,14 +1,13 @@
-.genre-filter {
+.genreFilterContainer {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.5rem 1rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    position: fixed; /* stickyからfixedに変更 */
-    top: 95px; /* ナビゲーションバーの高さに応じて調整 */
+    position: fixed;
+    top: 95px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -19,7 +18,14 @@
     transition: all 0.3s ease;
 }
 
-.genre-button {
+.genreFilter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.genreButton {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(204, 204, 204, 0.8);
     border-radius: 20px;
@@ -30,32 +36,50 @@
     color: #333;
 }
 
-.genre-button:hover {
+.genreButton:hover {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.genre-button.active {
+.divider {
+    height: 24px;
+    width: 2px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
+
+.gmdContainer {
+    display: flex;
+    align-items: center;
+}
+
+.active {
     background-color: rgba(255, 255, 255, 0.9);
     font-weight: bold;
     transform: scale(1.05);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.dark .genre-filter {
-    background-color: rgba(31, 31, 31, 0.7);
+:global(.dark) .genreFilterContainer {
+    background-color: rgba(31, 31, 31, 0.8);
 }
 
-.dark .genre-button {
+:global(.dark) .genreButton {
     background-color: #3b3b3b;
     border-color: rgba(80, 80, 80, 0.8);
     color: #e0e0e0;
 }
 
-.dark .genre-button:hover {
+:global(.dark) .genreButton:hover {
     background-color: #404040;
 }
 
-.dark .genre-button.active {
+:global(.dark) .divider {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+:global(.dark) .active {
     background-color: #505050;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }

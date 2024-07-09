@@ -11,7 +11,7 @@
     background: #ebebeb;
 }
 
-.login_container {
+.loginContainer {
     width: 100%;
     max-width: 600px;  
     background: #ffffff;
@@ -22,6 +22,7 @@
     margin-bottom: 10px;
     box-sizing: border-box;
 }
+
 .header {
     display: flex;
     flex-direction: column;
@@ -62,7 +63,7 @@
     border-radius: 6px;
 }
 
-.input-icon {
+.inputIcon {
     margin: 0px 30px;
     font-size: 24px;
     color: #797979;
@@ -70,7 +71,7 @@
 
 .inputs input {
     height: 50px;
-    width: calc(100% - 84px); /* アイコンのスペースを考慮 */
+    width: calc(100% - 84px);
     background: transparent;
     border: none;
     outline: none;
@@ -78,7 +79,7 @@
     font-size: 19px;
 }
 
-.forgot-password {
+.forgotPassword {
     padding-left: 62px;
     margin-top: 20px;
     margin-bottom: -10px;
@@ -86,7 +87,7 @@
     font-size: 18px;
 }
 
-.forgot-password span {
+.forgotPassword span {
     color: #007bff;
     cursor: pointer;
 }
@@ -137,7 +138,7 @@
     margin-left: 10px;
 }
 
-.google-login {
+.googleLogin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,17 +155,17 @@
     transition: all 0.3s ease;
 }
 
-.google-login:hover {
+.googleLogin:hover {
     background: #e6f2ff;
 }
 
-.google-icon {
+.googleIcon {
     margin-right: 10px;
     font-size: 24px;
     color: #2c79b9;
 }
 
-.submit-container {
+.submitContainer {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -223,10 +224,9 @@
     margin-left: 60px;
 }
 
-
 @media (max-width: 640px) {
-    .login_container,
-    .submit-container {
+    .loginContainer,
+    .submitContainer {
         padding: 20px;
     }
 
@@ -239,7 +239,7 @@
     }
 
     .enter,
-    .google-login {
+    .googleLogin {
         width: 100%;
     }
 
@@ -254,8 +254,8 @@
         padding: 10px;
     }
 
-    .login_container,
-    .submit-container {
+    .loginContainer,
+    .submitContainer {
         padding: 15px;
     }
 
@@ -271,7 +271,7 @@
         font-size: 16px;
     }
 
-    .submit-container {
+    .submitContainer {
         flex-direction: column;
         gap: 15px;
     }

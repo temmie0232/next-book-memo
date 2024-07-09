@@ -1,4 +1,4 @@
-.book-list-container {
+.bookListContainer {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     background: #ebebeb;
 }
 
-.book-list-container.dark {
+.dark {
     background-color: #333333;
 }
 
@@ -42,12 +42,12 @@
 }
 
 /* Dark mode styles */
-.dark .book {
+:global(.dark) .book {
     background-color: #929292;
     color: #000000;
 }
 
-.dark .shelf-divider {
+:global(.dark) .shelfDivider {
     background-color: #111111;
 }
 

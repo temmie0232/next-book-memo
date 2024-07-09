@@ -1,4 +1,4 @@
-import { BookType, genres } from '@/types/bookType';
+import { BookType, genres } from '@/types/book.types';
 
 /**
  * 指定された数のテスト用本データを生成する関数

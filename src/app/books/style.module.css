@@ -1,0 +1,11 @@
+.booksPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.contentContainer {
+  flex: 1;
+  overflow: hidden;
+}
