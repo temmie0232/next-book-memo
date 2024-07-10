@@ -66,11 +66,14 @@ const AddBookDialog = () => {
                                 <SelectValue placeholder={loading ? "読み込み中..." : "ジャンルを選択"} />
                             </SelectTrigger>
                             <SelectContent>
+                                {/* デフォルトの「後で設定する」オプション */}
+                                <SelectItem value="later">後で設定する</SelectItem>
+
                                 {error ? (
                                     // エラーが発生した場合の処理
                                     <SelectItem value="error">エラーが発生しました</SelectItem>
                                 ) : (
-                                    // エラーがない場合、ジャンルのリストを表示
+                                    // ユーザーが設定したジャンルのリスト
                                     genres.map((genre) => (
                                         // 各ジャンルに対してSelectItemを生成
                                         <SelectItem key={genre} value={genre}>
