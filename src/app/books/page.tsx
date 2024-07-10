@@ -8,6 +8,7 @@ import styles from './style.module.css';
 import GenreFilter from '@/features/books/GenreFilter/GenreFilter';
 import { useAuth } from '@/hooks/useAuth';
 import { useGenres } from '@/hooks/useGenres';
+import AddBookDialog from '@/features/books/AddBookDialog/AddBookDialog';
 
 const BooksPage: React.FC = () => {
     const { theme } = useTheme();
@@ -29,6 +30,7 @@ const BooksPage: React.FC = () => {
             <div className={styles.contentContainer}>
                 <BookList selectedGenre={selectedGenre} />
             </div>
+            <AddBookDialog />
         </div>
     );
 };
