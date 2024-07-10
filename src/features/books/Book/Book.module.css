@@ -54,7 +54,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* 幅を100%に設定 */
     height: 80px;
     border-radius: 8px;
     box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
@@ -62,7 +61,6 @@
     transition: all 0.3s ease;
     cursor: pointer;
     margin-top: auto;
-    /* 上部の余白を自動調整 */
     z-index: 0;
 }
 
