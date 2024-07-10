@@ -88,6 +88,31 @@ const AddBookDialog: React.FC = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
+                    {/* 読書状態選択フィールド */}
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="status" className="text-right">
+                            状態 {requiredAsterisk}
+                        </Label>
+                        <Select
+                            value={status || ''}
+                            onValueChange={(value: 'not-started' | 'in-progress' | 'completed') => {
+                                setStatus(value);
+                                setStatusError('');
+                            }}
+                        >
+                            <SelectTrigger className="col-span-3">
+                                <SelectValue placeholder="状態を選択" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="not-started">未読</SelectItem>
+                                <SelectItem value="in-progress">読書中</SelectItem>
+                                <SelectItem value="completed">完読</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    {statusError && (
+                        <p className="text-red-500 text-sm ml-[25%]">{statusError}</p>
+                    )}
                     {/* タイトル入力フィールド */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">
@@ -147,6 +172,28 @@ const AddBookDialog: React.FC = () => {
                             </SelectContent>
                         </Select>
                     </div>
+                    {/* 評価選択フィールド */}
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="rating" className="text-right">
+                            評価
+                        </Label>
+                        <Select
+                            value={rating || ''}
+                            onValueChange={(value) => setRating(value === 'later' ? null : value)}
+                        >
+                            <SelectTrigger className="col-span-3">
+                                <SelectValue placeholder="評価を選択" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="later">後で設定する</SelectItem>
+                                <SelectItem value="1">1 - 面白くない</SelectItem>
+                                <SelectItem value="2">2 - あまり面白くない</SelectItem>
+                                <SelectItem value="3">3 - 普通</SelectItem>
+                                <SelectItem value="4">4 - 面白い</SelectItem>
+                                <SelectItem value="5">5 - とても面白い</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                     {/* 読書開始日入力フィールド */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="startDate" className="text-right">
@@ -172,53 +219,6 @@ const AddBookDialog: React.FC = () => {
                             value={endDate || ''}
                             onChange={(e) => setEndDate(e.target.value || null)}
                         />
-                    </div>
-                    {/* 読書状態選択フィールド */}
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="status" className="text-right">
-                            状態 {requiredAsterisk}
-                        </Label>
-                        <Select
-                            value={status || ''}
-                            onValueChange={(value: 'not-started' | 'in-progress' | 'completed') => {
-                                setStatus(value);
-                                setStatusError('');
-                            }}
-                        >
-                            <SelectTrigger className="col-span-3">
-                                <SelectValue placeholder="状態を選択" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="not-started">未読</SelectItem>
-                                <SelectItem value="in-progress">読書中</SelectItem>
-                                <SelectItem value="completed">完読</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    {statusError && (
-                        <p className="text-red-500 text-sm ml-[25%]">{statusError}</p>
-                    )}
-                    {/* 評価選択フィールド */}
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="rating" className="text-right">
-                            評価
-                        </Label>
-                        <Select
-                            value={rating || ''}
-                            onValueChange={(value) => setRating(value === 'later' ? null : value)}
-                        >
-                            <SelectTrigger className="col-span-3">
-                                <SelectValue placeholder="評価を選択" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="later">後で設定する</SelectItem>
-                                <SelectItem value="1">1 - 面白くない</SelectItem>
-                                <SelectItem value="2">2 - あまり面白くない</SelectItem>
-                                <SelectItem value="3">3 - 普通</SelectItem>
-                                <SelectItem value="4">4 - 面白い</SelectItem>
-                                <SelectItem value="5">5 - とても面白い</SelectItem>
-                            </SelectContent>
-                        </Select>
                     </div>
                 </div>
                 {/* 本を追加するボタン */}

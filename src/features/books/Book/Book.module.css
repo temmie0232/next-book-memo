@@ -2,25 +2,36 @@
     width: 120px;
     height: 70vh;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
     border-radius: 6px;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5), inset 0px -3px 6px -2px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
     background-color: #c0c0c0;
+    padding: 10px;
+    border: 3px solid #a0a0a0;
+    transition: all 0.3s ease;
 }
 
 .book:hover {
     transform: scale(1.05);
 }
 
+.darkBook {
+    color: white;
+}
+
+.lightBook {
+    color: black;
+}
+
 .bookTitle {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    text-align: center;
-    padding: 0.5rem;
+    font-family: "M PLUS 1p Thin";
+    letter-spacing: 0.1em;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -28,9 +39,46 @@
     line-clamp: 5;
     -webkit-box-orient: vertical;
     box-orient: vertical;
+    margin-top: 26px;
+    flex-grow: 1;
 }
 
 .bookLink {
     text-decoration: none;
     color: inherit;
+}
+
+.bookStatus {
+    font-size: 2.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: auto;
+    z-index: 0;
+}
+
+.statusIndicator {
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 4px solid;
+    transition: all 0.3s ease;
+}
+
+.dark .bookStatus {
+    color: white;
+}
+
+.light .bookStatus {
+    color: black;
 }
