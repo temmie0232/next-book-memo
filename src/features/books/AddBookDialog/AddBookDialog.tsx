@@ -25,10 +25,24 @@ const AddBookDialog = () => {
     const [open, setOpen] = useState(false);
     const { user } = useAuth();
     const { genres, loading, error } = useGenres();
+    const [title, setTitle] = useState('');
+    const [titleError, setTitleError] = useState('');
 
     if (!user) {
         return null;
     }
+
+    const handleSubmit = () => {
+        if (!title.trim()) {
+            setTitleError('タイトルは必須項目です');
+            return;
+        }
+        // 本の追加処理をあとで記述する
+        console.log('本を追加:', title);
+        setOpen(false);
+        setTitle('');
+        setTitleError('');
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -47,10 +61,21 @@ const AddBookDialog = () => {
                 <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">
-                            タイトル
+                            タイトル <span className="text-red-500">*</span>
                         </Label>
-                        <Input id="title" className="col-span-3" />
+                        <Input
+                            id="title"
+                            className="col-span-3"
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value);
+                                setTitleError('');
+                            }}
+                        />
                     </div>
+                    {titleError && (
+                        <p className="text-red-500 text-sm ml-[25%]">{titleError}</p>
+                    )}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="author" className="text-right">
                             著者
@@ -111,7 +136,6 @@ const AddBookDialog = () => {
                             </SelectContent>
                         </Select>
                     </div>
-                    {/* 新しく追加された評価フィールド */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="rating" className="text-right">
                             評価
@@ -131,7 +155,7 @@ const AddBookDialog = () => {
                         </Select>
                     </div>
                 </div>
-                <Button type="submit" onClick={() => setOpen(false)}>本を追加</Button>
+                <Button type="submit" onClick={handleSubmit}>本を追加</Button>
             </DialogContent>
         </Dialog>
     );
