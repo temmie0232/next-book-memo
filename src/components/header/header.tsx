@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "./header.module.css";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
@@ -13,9 +13,14 @@ import { useTheme } from '@/contexts/theme/useTheme';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    onSearch: (searchTerm: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     const { theme, setTheme } = useTheme();
     const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState('');
 
     const toggle_mode = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -28,6 +33,11 @@ const Header: React.FC = () => {
         } catch (error) {
             console.error("ログアウトに失敗しました", error);
         }
+    };
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSearch(searchTerm);
     };
 
     return (
@@ -43,12 +53,17 @@ const Header: React.FC = () => {
                 />
             </div>
 
-            <div className={styles.searchBox}>
-                <input type="text" placeholder='Search...' />
-                <div className={styles.searchIconContainer}>
+            <form onSubmit={handleSearch} className={styles.searchBox}>
+                <input
+                    type="text"
+                    placeholder='Search...'
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit" className={styles.searchIconContainer}>
                     <FaSearch className={`w-6 h-6 ${theme === 'dark' ? 'text-black' : 'text-white'}`} />
-                </div>
-            </div>
+                </button>
+            </form>
 
             <div className={styles.navButtons}>
                 {theme === "light" ? (

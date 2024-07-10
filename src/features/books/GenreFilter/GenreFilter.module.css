@@ -18,6 +18,65 @@
     transition: all 0.3s ease;
 }
 
+.statusFilterContainer {
+    display: flex;
+    align-items: center;
+}
+
+.statusButton {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.statusButton:last-child {
+    margin-right: 0;
+}
+
+.statusButton.notStarted {
+    background-color: transparent;
+    border-color: #FF5C5C;
+}
+
+.statusButton.inProgress {
+    background-color: transparent;
+    border-color: #FFD700;
+}
+
+.statusButton.completed {
+    background-color: transparent;
+    border-color: #32CD32;
+}
+
+.statusButton.active.notStarted {
+    background-color: #FF5C5C;
+}
+
+.statusButton.active.inProgress {
+    background-color: #FFD700;
+}
+
+.statusButton.active.completed {
+    background-color: #32CD32;
+}
+
+.statusButton.active {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.divider {
+    height: 24px;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
+
 .genreFilter {
     display: flex;
     flex-wrap: wrap;
@@ -38,15 +97,6 @@
 
 .genreButton:hover {
     background-color: rgba(255, 255, 255, 0.7);
-}
-
-.divider {
-    height: 24px;
-    width: 2px;
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.2);
-    margin: 0 1rem;
-    transition: all 0.3s ease;
 }
 
 .gmdContainer {
@@ -76,7 +126,7 @@
 }
 
 :global(.dark) .divider {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 :global(.dark) .active {

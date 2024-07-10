@@ -2,16 +2,17 @@ import React from 'react';
 import styles from './BookList.module.css';
 import { useTheme } from '@/contexts/theme/useTheme';
 import { useBookshelfLayout } from '@/hooks/useBookshelfLayout';
-import { filterBooks } from '@/utils/filterBooks';
 import BookshelfRow from '@/features/books/BookshelfRow/BookshelfRow';
 import { useBookList } from '@/hooks/useBookList';
 import { Book } from '@/types/book.types';
 
 interface BookListProps {
     selectedGenre: string;
+    activeStatus: 'not-started' | 'in-progress' | 'completed' | null;
+    searchTerm: string;
 }
 
-const BookList: React.FC<BookListProps> = ({ selectedGenre }) => {
+const BookList: React.FC<BookListProps> = ({ selectedGenre, activeStatus, searchTerm }) => {
     // useBookListフックを使用して本のリスト、ローディング状態、エラー状態を取得
     const { books, loading, error } = useBookList();
     // 本棚のレイアウトを計算するカスタムフックを使用
@@ -24,13 +25,22 @@ const BookList: React.FC<BookListProps> = ({ selectedGenre }) => {
         return <div className={styles.loadingMessage}>読み込み中...</div>;
     }
 
-    // エラー時の表示
     if (error) {
         return <div className={styles.errorMessage}>{error.message}</div>;
     }
 
-    // 選択されたジャンルに基づいて本をフィルタリング
-    const filteredBooks = filterBooks(books, selectedGenre);
+    const filterBooks = (books: Book[]): Book[] => {
+        return books.filter(book => {
+            const genreMatch = selectedGenre === 'すべて' || book.genreId === selectedGenre;
+            const statusMatch = activeStatus === null || book.status === activeStatus;
+            const searchMatch = searchTerm === '' ||
+                book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                (book.author && book.author.toLowerCase().includes(searchTerm.toLowerCase()));
+            return genreMatch && statusMatch && searchMatch;
+        });
+    };
+
+    const filteredBooks = filterBooks(books);
 
     // 本を棚ごとに分割
     const bookShelves: Book[][] = [];
