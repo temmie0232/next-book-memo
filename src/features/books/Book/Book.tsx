@@ -3,47 +3,62 @@ import Link from 'next/link';
 import { Book as BookType } from '@/types/book.types';
 import styles from './Book.module.css';
 import {
-    FaRegFaceGrinBeam,
     FaRegFaceSmile,
-    FaRegFaceMeh,
     FaRegFaceFrownOpen,
-    FaRegFaceFrown,
-    FaRegCircle
+    FaRegCircle,
+    FaRegFaceMehBlank,
+    FaRegFaceGrinSquint
 } from 'react-icons/fa6';
+import { FaRegDizzy } from 'react-icons/fa';
+import { useTheme } from '@/contexts/theme/useTheme';
 
 interface BookProps {
     book: BookType;
 }
 
 const Book: React.FC<BookProps> = ({ book }) => {
-    // 評価に基づいてアイコンを選択する関数
+    const { theme } = useTheme();
+
     const getRatingIcon = (rating: string | null) => {
-        switch (rating) {
-            case '5': return <FaRegFaceGrinBeam />;
-            case '4': return <FaRegFaceSmile />;
-            case '3': return <FaRegFaceMeh />;
-            case '2': return <FaRegFaceFrownOpen />;
-            case '1': return <FaRegFaceFrown />;
-            default: return <FaRegCircle />;
+        const IconComponent = (() => {
+            switch (rating) {
+                case '5': return FaRegFaceGrinSquint;
+                case '4': return FaRegFaceSmile;
+                case '3': return FaRegFaceMehBlank;
+                case '2': return FaRegFaceFrownOpen;
+                case '1': return FaRegDizzy;
+                default: return FaRegCircle;
+            }
+        })();
+
+        return <IconComponent color={theme === 'dark' ? 'white' : 'black'} />;
+    };
+
+    const getStatusColor = (status: 'not-started' | 'in-progress' | 'completed') => {
+        switch (status) {
+            case 'not-started': return '#FF5C5C';
+            case 'in-progress': return '#FFD700';
+            case 'completed': return '#32CD32';
+            default: return '#808080';
         }
     };
 
-    // ステータスに基づいて色を選択する関数
-    const getStatusColor = (status: 'not-started' | 'in-progress' | 'completed') => {
-        switch (status) {
-            case 'not-started': return 'text-red-500';
-            case 'in-progress': return 'text-yellow-500';
-            case 'completed': return 'text-green-500';
-            default: return '';
-        }
-    };
+    const backgroundColor = theme === 'dark' ? '#333333' : '#ebebeb';
+    const bookColor = theme === 'dark' ? '#3E3E3E' : '#F8F8F8'; // 赤または青
 
     return (
         <Link href={`/book/${book.id}`} className={styles.bookLink}>
-            <div className={styles.book}>
+            <div className={`${styles.book} ${theme === 'dark' ? styles.darkBook : styles.lightBook}`} style={{ backgroundColor: bookColor }}>
                 <span className={styles.bookTitle}>{book.title}</span>
-                <div className={`${styles.bookStatus} ${getStatusColor(book.status)}`}>
+                <div className={styles.bookStatus} style={{ backgroundColor }}>
                     {getRatingIcon(book.rating)}
+                    <div
+                        className={styles.statusIndicator}
+                        style={{
+                            backgroundColor: getStatusColor(book.status),
+                            borderColor: backgroundColor
+                        }}
+                    ></div>
                 </div>
             </div>
         </Link>
