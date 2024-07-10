@@ -54,6 +54,8 @@ const AddBookDialog: React.FC = () => {
         setRating,
         titleError,
         setTitleError,
+        statusError,
+        setStatusError,
         handleSubmit,
     } = useAddBookForm();
 
@@ -66,6 +68,9 @@ const AddBookDialog: React.FC = () => {
             setOpen(false);  // 成功時はダイアログを閉じる
         }
     };
+
+    // 必須フィールドを示す赤いアスタリスク
+    const requiredAsterisk = <span className="text-red-500">*</span>;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -86,12 +91,12 @@ const AddBookDialog: React.FC = () => {
                     {/* タイトル入力フィールド */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">
-                            タイトル <span className="text-red-500">*</span>
+                            タイトル {requiredAsterisk}
                         </Label>
                         <Input
                             id="title"
                             className="col-span-3"
-                            value={title}
+                            value={title || ''}
                             onChange={(e) => {
                                 setTitle(e.target.value);
                                 setTitleError('');
@@ -109,8 +114,8 @@ const AddBookDialog: React.FC = () => {
                         <Input
                             id="author"
                             className="col-span-3"
-                            value={author}
-                            onChange={(e) => setAuthor(e.target.value)}
+                            value={author || ''}
+                            onChange={(e) => setAuthor(e.target.value || null)}
                         />
                     </div>
                     {/* ジャンル選択フィールド */}
@@ -120,8 +125,8 @@ const AddBookDialog: React.FC = () => {
                         </Label>
                         <Select
                             disabled={loading}
-                            value={genre}
-                            onValueChange={(value) => setGenre(value)}
+                            value={genre || ''}
+                            onValueChange={(value) => setGenre(value === 'later' ? null : value)}
                         >
                             <SelectTrigger className="col-span-3">
                                 <SelectValue placeholder={loading ? "読み込み中..." : "ジャンルを選択"} />
@@ -151,8 +156,8 @@ const AddBookDialog: React.FC = () => {
                             id="startDate"
                             type="date"
                             className="col-span-3"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
+                            value={startDate || ''}
+                            onChange={(e) => setStartDate(e.target.value || null)}
                         />
                     </div>
                     {/* 読書終了日入力フィールド */}
@@ -164,18 +169,21 @@ const AddBookDialog: React.FC = () => {
                             id="endDate"
                             type="date"
                             className="col-span-3"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
+                            value={endDate || ''}
+                            onChange={(e) => setEndDate(e.target.value || null)}
                         />
                     </div>
                     {/* 読書状態選択フィールド */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="status" className="text-right">
-                            状態
+                            状態 {requiredAsterisk}
                         </Label>
                         <Select
-                            value={status}
-                            onValueChange={(value: 'not-started' | 'in-progress' | 'completed') => setStatus(value)}
+                            value={status || ''}
+                            onValueChange={(value: 'not-started' | 'in-progress' | 'completed') => {
+                                setStatus(value);
+                                setStatusError('');
+                            }}
                         >
                             <SelectTrigger className="col-span-3">
                                 <SelectValue placeholder="状態を選択" />
@@ -187,14 +195,17 @@ const AddBookDialog: React.FC = () => {
                             </SelectContent>
                         </Select>
                     </div>
+                    {statusError && (
+                        <p className="text-red-500 text-sm ml-[25%]">{statusError}</p>
+                    )}
                     {/* 評価選択フィールド */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="rating" className="text-right">
                             評価
                         </Label>
                         <Select
-                            value={rating}
-                            onValueChange={(value) => setRating(value)}
+                            value={rating || ''}
+                            onValueChange={(value) => setRating(value === 'later' ? null : value)}
                         >
                             <SelectTrigger className="col-span-3">
                                 <SelectValue placeholder="評価を選択" />
