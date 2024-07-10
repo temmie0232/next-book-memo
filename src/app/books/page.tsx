@@ -15,9 +15,14 @@ const BooksPage: React.FC = () => {
     const { user } = useAuth();
     const { genres, loading, error } = useGenres();
     const [selectedGenre, setSelectedGenre] = useState<string>('すべて');
+    const [activeStatus, setActiveStatus] = useState<'not-started' | 'in-progress' | 'completed' | null>(null);
 
     const handleGenreSelect = (genre: string) => {
         setSelectedGenre(genre);
+    };
+
+    const handleStatusFilterChange = (status: 'not-started' | 'in-progress' | 'completed' | null) => {
+        setActiveStatus(status);
     };
 
     return (
@@ -26,9 +31,10 @@ const BooksPage: React.FC = () => {
             <GenreFilter
                 selectedGenre={selectedGenre}
                 onGenreSelect={handleGenreSelect}
+                onStatusFilterChange={handleStatusFilterChange}
             />
             <div className={styles.contentContainer}>
-                <BookList selectedGenre={selectedGenre} />
+                <BookList selectedGenre={selectedGenre} activeStatus={activeStatus} />
             </div>
             <AddBookDialog />
         </div>
