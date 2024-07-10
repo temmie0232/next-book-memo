@@ -51,38 +51,46 @@
     color: #fff;
 }
 
-.searchBox img {
-    width: 20px;
+.searchIconContainer {
     cursor: pointer;
 }
 
-.navButtons {
-    display: flex;
-    align-items: center;
-}
-
-.logoutButton,
-.themeToggleButton {
-    font-size: 50px;
+.settingsButton {
+    font-size: 24px;
     cursor: pointer;
     padding: 5px;
     display: flex;
     align-items: center;
     transition: transform 0.3s ease, filter 0.3s ease;
+    border-color: red;
 }
 
-.logoutButton:hover,
-.themeToggleButton:hover {
-    transform: scale(1.1); 
+.settingsButton:hover {
+    transform: scale(1.1);
     filter: brightness(1.2);
 }
 
-.verticalDivider {
-    width: 4px;
-    height: 30px;
-    background: #000000;
-    border-radius: 15px;
-    margin: 0 14px;
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.userAvatar {
+    border-radius: 50%;
+}
+
+.userIcon {
+    font-size: 24px;
+}
+
+.displayName{
+    font-size: 17px;
+}
+
+.menuIcon {
+    margin-right: 10px;
+    font-size: 20px;
 }
 
 .dark .searchBox {
@@ -95,13 +103,4 @@
 
 .dark .searchBox input::placeholder {
     color: #222;
-}
-
-.dark .verticalDivider {
-    background: #ffffff;
-}
-
-.dark .logoutButton:hover,
-.dark .themeToggleButton:hover {
-    filter: brightness(1.5); 
 }
