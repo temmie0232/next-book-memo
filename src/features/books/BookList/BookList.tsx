@@ -9,9 +9,10 @@ import { Book } from '@/types/book.types';
 interface BookListProps {
     selectedGenre: string;
     activeStatus: 'not-started' | 'in-progress' | 'completed' | null;
+    searchTerm: string;
 }
 
-const BookList: React.FC<BookListProps> = ({ selectedGenre, activeStatus }) => {
+const BookList: React.FC<BookListProps> = ({ selectedGenre, activeStatus, searchTerm }) => {
     // useBookListフックを使用して本のリスト、ローディング状態、エラー状態を取得
     const { books, loading, error } = useBookList();
     // 本棚のレイアウトを計算するカスタムフックを使用
@@ -32,7 +33,10 @@ const BookList: React.FC<BookListProps> = ({ selectedGenre, activeStatus }) => {
         return books.filter(book => {
             const genreMatch = selectedGenre === 'すべて' || book.genreId === selectedGenre;
             const statusMatch = activeStatus === null || book.status === activeStatus;
-            return genreMatch && statusMatch;
+            const searchMatch = searchTerm === '' ||
+                book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                (book.author && book.author.toLowerCase().includes(searchTerm.toLowerCase()));
+            return genreMatch && statusMatch && searchMatch;
         });
     };
 
