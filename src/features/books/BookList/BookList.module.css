@@ -71,3 +71,27 @@
         height: 50vh;
     }
 }
+
+.loadingMessage,
+.errorMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.errorMessage {
+    color: #ff0000;
+}
+
+/* ダークモード用のスタイル */
+.dark .loadingMessage,
+.dark .errorMessage {
+    color: #fff;
+}
+
+.dark .errorMessage {
+    color: #ff6b6b;
+}
