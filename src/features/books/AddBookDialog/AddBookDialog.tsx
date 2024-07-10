@@ -111,6 +111,25 @@ const AddBookDialog = () => {
                             </SelectContent>
                         </Select>
                     </div>
+                    {/* 新しく追加された評価フィールド */}
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="rating" className="text-right">
+                            評価
+                        </Label>
+                        <Select>
+                            <SelectTrigger className="col-span-3">
+                                <SelectValue placeholder="評価を選択" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="later">後で設定する</SelectItem>
+                                <SelectItem value="1">1 - 面白くない</SelectItem>
+                                <SelectItem value="2">2 - あまり面白くない</SelectItem>
+                                <SelectItem value="3">3 - 普通</SelectItem>
+                                <SelectItem value="4">4 - 面白い</SelectItem>
+                                <SelectItem value="5">5 - とても面白い</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
                 <Button type="submit" onClick={() => setOpen(false)}>本を追加</Button>
             </DialogContent>
