@@ -10,33 +10,35 @@ import { BookData } from '@/types/book.types';
  * - フォームの各フィールドの状態管理
  * - フォームの送信処理
  * - フォームのリセット
- * - バリデーション（タイトルの必須チェック）
+ * - バリデーション（タイトルと状態の必須チェック）
  */
 export const useAddBookForm = () => {
     const { user } = useAuth();  // 現在のユーザー情報を取得
 
     // フォームの各フィールドの状態
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [genre, setGenre] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [status, setStatus] = useState<'not-started' | 'in-progress' | 'completed'>('not-started');
-    const [rating, setRating] = useState('');
+    const [title, setTitle] = useState<string>('');
+    const [author, setAuthor] = useState<string | null>(null);
+    const [genre, setGenre] = useState<string | null>(null);
+    const [startDate, setStartDate] = useState<string | null>(null);
+    const [endDate, setEndDate] = useState<string | null>(null);
+    const [status, setStatus] = useState<'not-started' | 'in-progress' | 'completed' | null>(null);
+    const [rating, setRating] = useState<string | null>(null);
     const [titleError, setTitleError] = useState('');
+    const [statusError, setStatusError] = useState('');
 
     /**
      * フォームをリセットする関数
      */
     const resetForm = () => {
         setTitle('');
-        setAuthor('');
-        setGenre('');
-        setStartDate('');
-        setEndDate('');
-        setStatus('not-started');
-        setRating('');
+        setAuthor(null);
+        setGenre(null);
+        setStartDate(null);
+        setEndDate(null);
+        setStatus(null);
+        setRating(null);
         setTitleError('');
+        setStatusError('');
     };
 
     /**
@@ -46,21 +48,28 @@ export const useAddBookForm = () => {
     const handleSubmit = async () => {
         if (!user) return false;  // ユーザーが未ログインの場合は処理を中断
 
-        // タイトルのバリデーション
+        // タイトルと状態のバリデーション
+        let isValid = true;
         if (!title.trim()) {
             setTitleError('タイトルは必須項目です');
-            return false;
+            isValid = false;
         }
+        if (!status) {
+            setStatusError('状態は必須項目です');
+            isValid = false;
+        }
+
+        if (!isValid) return false;
 
         // BookDataオブジェクトの作成
         const bookData: BookData = {
             title: title.trim(),
-            author: author.trim() || undefined,
-            genreId: genre !== 'later' ? genre : undefined,
-            startDate: startDate || undefined,
-            endDate: endDate || undefined,
-            status: status,
-            rating: rating !== 'later' ? rating : undefined,
+            author: author,
+            genreId: genre,
+            startDate: startDate,
+            endDate: endDate,
+            status: status as 'not-started' | 'in-progress' | 'completed', // null の可能性を排除
+            rating: rating,
         };
 
         try {
@@ -93,6 +102,8 @@ export const useAddBookForm = () => {
         setRating,
         titleError,
         setTitleError,
+        statusError,
+        setStatusError,
         handleSubmit,
         resetForm
     };
