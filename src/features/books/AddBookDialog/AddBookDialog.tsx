@@ -17,10 +17,18 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { IoIosAddCircleOutline, IoMdAdd } from 'react-icons/io';
+import { IoMdAdd } from 'react-icons/io';
+import { useGenres } from '@/hooks/useGenres';
+import { useAuth } from '@/hooks/useAuth';
 
 const AddBookDialog = () => {
     const [open, setOpen] = useState(false);
+    const { user } = useAuth();
+    const { genres, loading, error } = useGenres();
+
+    if (!user) {
+        return null;
+    }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -53,15 +61,23 @@ const AddBookDialog = () => {
                         <Label htmlFor="genre" className="text-right">
                             ジャンル
                         </Label>
-                        <Select>
+                        <Select disabled={loading}>
                             <SelectTrigger className="col-span-3">
-                                <SelectValue placeholder="ジャンルを選択" />
+                                <SelectValue placeholder={loading ? "読み込み中..." : "ジャンルを選択"} />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="fiction">Fiction</SelectItem>
-                                <SelectItem value="non-fiction">Non-Fiction</SelectItem>
-                                <SelectItem value="science">Science</SelectItem>
-                                <SelectItem value="history">History</SelectItem>
+                                {error ? (
+                                    // エラーが発生した場合の処理
+                                    <SelectItem value="error">エラーが発生しました</SelectItem>
+                                ) : (
+                                    // エラーがない場合、ジャンルのリストを表示
+                                    genres.map((genre) => (
+                                        // 各ジャンルに対してSelectItemを生成
+                                        <SelectItem key={genre} value={genre}>
+                                            {genre}
+                                        </SelectItem>
+                                    ))
+                                )}
                             </SelectContent>
                         </Select>
                     </div>
@@ -93,7 +109,7 @@ const AddBookDialog = () => {
                         </Select>
                     </div>
                 </div>
-                <Button type="submit" onClick={() => setOpen(false)}>Add Book</Button>
+                <Button type="submit" onClick={() => setOpen(false)}>本を追加</Button>
             </DialogContent>
         </Dialog>
     );
