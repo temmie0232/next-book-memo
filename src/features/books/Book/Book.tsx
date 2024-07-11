@@ -80,7 +80,7 @@ const Book: React.FC<BookProps> = ({ book }) => {
     const bookColor = theme === 'dark' ? '#3E3E3E' : '#F8F8F8';
 
     return (
-        <Link href={`/book/${book.id}`} className={styles.bookLink}>
+        <Link href={`/books/${book.id}`} className={styles.bookLink}>
             <div className={`${styles.book} ${theme === 'dark' ? styles.darkBook : styles.lightBook}`} style={{ backgroundColor: bookColor }}>
                 <span className={styles.bookTitle}>{book.title}</span>
                 <HoverCard>
