@@ -38,7 +38,7 @@ const SettingsDropdown: React.FC<SettingsDropdownProps> = ({ onLogout }) => {
             <CustomTooltip content="設定">
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="p-2">
-                        <IoMdSettings size={24} />
+                        <IoMdSettings size={38} />
                     </Button>
                 </DropdownMenuTrigger>
             </CustomTooltip>
