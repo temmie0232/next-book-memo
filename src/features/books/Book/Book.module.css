@@ -39,6 +39,7 @@
     line-clamp: 5;
     -webkit-box-orient: vertical;
     box-orient: vertical;
+    max-height: calc(100% - 116px);
     margin-top: 26px;
     flex-grow: 1;
 }
