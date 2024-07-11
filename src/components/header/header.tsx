@@ -93,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
                         </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={toggle_mode}>
+                    <DropdownMenuItem onClick={toggle_mode} className={styles.dropdownItem}>
                         {theme === "light" ? (
                             <>
                                 <MdDarkMode className={styles.menuIcon} />
@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
                             </>
                         )}
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleLogout}>
+                    <DropdownMenuItem onClick={handleLogout} className={styles.dropdownItem}>
                         <IoIosLogOut className={styles.menuIcon} />
                         <span>ログアウト</span>
                     </DropdownMenuItem>

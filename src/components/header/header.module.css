@@ -55,6 +55,16 @@
     cursor: pointer;
 }
 
+.dropdownItem {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 0 16px; /* 左右のパディングのみ設定 */
+    margin: 4px 0; /* 項目間のマージンを維持 */
+    height: 40px; /* 固定の高さを設定 */
+    display: flex;
+    align-items: center; /* 縦方向の中央揃え */
+}
+
 .settingsButton {
     font-size: 24px;
     cursor: pointer;
@@ -93,6 +103,8 @@
 .menuIcon {
     margin-right: 10px;
     font-size: 20px;
+    display: flex; /* アイコンを中央揃えにするために追加 */
+    align-items: center; /* アイコンを中央揃えにするために追加 */
 }
 
 .dark .searchBox {
