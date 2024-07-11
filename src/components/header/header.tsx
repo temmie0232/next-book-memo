@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
 
             <DropdownMenu>
                 <DropdownMenuTrigger className={` ${styles.settingsButton} `}>
-                    <IoMdSettings className="w-9 h-9 border-none" />
+                    <IoMdSettings className="w-9 h-9" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuLabel>
