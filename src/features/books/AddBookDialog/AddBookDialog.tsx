@@ -20,6 +20,7 @@ import {
 import { IoMdAdd } from 'react-icons/io';
 import { useGenres } from '@/hooks/useGenres';
 import { useAddBookForm } from '@/hooks/useAddBookForm';
+import CustomTooltip from '@/components/elements/CustomTooltip';
 
 /**
  * 本を追加するためのダイアログコンポーネント
@@ -75,11 +76,13 @@ const AddBookDialog: React.FC = () => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             {/* 本を追加するボタン */}
-            <DialogTrigger asChild>
-                <Button className="fixed bottom-10 right-10 rounded-full w-16 h-16 p-0 flex items-center justify-center">
-                    <IoMdAdd className="w-12 h-12" />
-                </Button>
-            </DialogTrigger>
+            <CustomTooltip content="本を追加する">
+                <DialogTrigger asChild>
+                    <Button className="fixed bottom-10 right-10 rounded-full w-16 h-16 p-0 flex items-center justify-center">
+                        <IoMdAdd className="w-12 h-12" />
+                    </Button>
+                </DialogTrigger>
+            </CustomTooltip>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                     <DialogTitle>新しい本の追加</DialogTitle>

@@ -18,6 +18,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import CustomTooltip from '@/components/elements/CustomTooltip';
 
 interface HeaderProps {
     onSearch: (searchTerm: string) => void;
@@ -72,9 +73,11 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
             </form>
 
             <DropdownMenu>
-                <DropdownMenuTrigger className={` ${styles.settingsButton} `}>
-                    <IoMdSettings className="w-9 h-9" />
-                </DropdownMenuTrigger>
+                <CustomTooltip content="設定">
+                    <DropdownMenuTrigger className={` ${styles.settingsButton} `}>
+                        <IoMdSettings className="w-9 h-9" />
+                    </DropdownMenuTrigger>
+                </CustomTooltip>
                 <DropdownMenuContent>
                     <DropdownMenuLabel>
                         <div className={styles.userInfo}>

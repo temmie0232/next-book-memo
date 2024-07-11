@@ -16,6 +16,7 @@ import styles from './GenreManagementDialog.module.css';
 import { useAuth } from '@/hooks/useAuth';
 import { useGenres } from '@/hooks/useGenres';
 import { addGenre, deleteGenre } from '@/utils/genreManager';
+import CustomTooltip from '@/components/elements/CustomTooltip';
 
 const GenreManagementDialog = () => {
     const [newGenre, setNewGenre] = useState('');
@@ -45,11 +46,13 @@ const GenreManagementDialog = () => {
 
     return (
         <Dialog>
-            <DialogTrigger asChild>
-                <div className={styles.editIcon}>
-                    <CiEdit className="text-3xl dark:text-white" />
-                </div>
-            </DialogTrigger>
+            <CustomTooltip content="ジャンルを編集する">
+                <DialogTrigger asChild>
+                    <div className={styles.editIcon}>
+                        <CiEdit className="text-3xl dark:text-white" />
+                    </div>
+                </DialogTrigger>
+            </CustomTooltip>
             <DialogContent className={`sm:max-w-[425px] ${styles.dialog}`}>
                 <DialogHeader>
                     <DialogTitle>ジャンル管理</DialogTitle>
