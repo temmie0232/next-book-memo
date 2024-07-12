@@ -1,0 +1,23 @@
+.autoResizeTextArea {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    resize: none;
+    overflow: hidden;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    text-align: left;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.darkAutoResizeTextArea {
+    background-color: #3E3E3E;
+    color: white;
+}
+
+.lightAutoResizeTextArea {
+    background-color: #F8F8F8;
+    color: black;
+}

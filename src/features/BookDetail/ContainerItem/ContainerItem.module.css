@@ -1,0 +1,111 @@
+.containerItem {
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 80%;
+}
+
+.containerItemContent {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+.darkContainerItemContent {
+    background-color: #3E3E3E;
+    margin-top: 2.5rem;
+}
+
+.lightContainerItemContent {
+    background-color: #F8F8F8;
+    margin-top: 2.5rem;
+}
+
+.containerTitle {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.5rem;
+    padding: 0 0.6rem;
+    font-size: 1.4rem;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    text-align: left;
+    transition: color 0.3s;
+}
+
+.buttonBar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.buttonBar:hover {
+    opacity: 1;
+}
+
+.addButton {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.2s;
+}
+
+.deleteButton {
+    position: absolute;
+    right: 0;
+    transition: transform 0.2s;
+}
+
+.addButton,
+.deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.addButton:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.deleteButton:hover {
+    transform: scale(1.1);
+}
+
+.autoResizeTextArea {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    resize: none;
+    overflow: hidden;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    text-align: left;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.darkAutoResizeTextArea {
+    background-color: #3E3E3E;
+    color: white;
+}
+
+.lightAutoResizeTextArea {
+    background-color: #F8F8F8;
+    color: black;
+}
+
+.mPlusFont {
+    font-family: "M PLUS 1p", sans-serif;
+}
