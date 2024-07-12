@@ -36,8 +36,8 @@ const BookDetailHeader: React.FC<BookDetailHeaderProps> = ({ onSave }) => {
 
     return (
         <header className={`fixed top-0 left-0 right-0 z-10 flex justify-between items-center h-16 p-4 ${theme === 'dark'
-            ? 'bg-[#2E2E2E] text-white border-b border-gray-700'
-            : 'bg-[#ebebeb] text-black border-b border-gray-300'
+            ? 'bg-[#2E2E2E] text-white border-b border-[#858383]'
+            : 'bg-[#ebebeb] text-black border-b border-gray-400'
             }`}>
             <CustomTooltip content="戻る">
                 <Button variant="ghost" onClick={handleGoBack} className="p-2">
@@ -45,11 +45,6 @@ const BookDetailHeader: React.FC<BookDetailHeaderProps> = ({ onSave }) => {
                 </Button>
             </CustomTooltip>
             <div className="flex items-center space-x-2">
-                <CustomTooltip content="保存">
-                    <Button variant="ghost" onClick={onSave} className="p-2">
-                        <FaSave size={34} />
-                    </Button>
-                </CustomTooltip>
                 <SettingsDropdown onLogout={handleLogout} />
             </div>
         </header>
