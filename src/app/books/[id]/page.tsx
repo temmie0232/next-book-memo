@@ -8,6 +8,7 @@ import { PlusCircle, Trash2 } from 'lucide-react';
 import styles from './style.module.css';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import CustomTooltip from '@/components/elements/CustomTooltip';
 
 interface Container {
     id: number;
@@ -84,38 +85,44 @@ const BookDetailPage: React.FC = () => {
                                     type="text"
                                     value={container.title}
                                     onChange={(e) => updateContainer(container.id, 'title', e.target.value)}
-                                    className={styles.containerTitle}
+                                    className={`${styles.containerTitle} ${styles.mPlusFont}`}
                                 />
                                 <AutoResizeTextArea
                                     value={container.content}
                                     onChange={(e) => updateContainer(container.id, 'content', e.target.value)}
-                                    className={`${styles.autoResizeTextArea} ${theme === 'dark' ? styles.darkAutoResizeTextArea : styles.lightAutoResizeTextArea}`}
+                                    className={`${styles.autoResizeTextArea} ${theme === 'dark' ? styles.darkAutoResizeTextArea : styles.lightAutoResizeTextArea} ${styles.mPlusFont}`}
                                 />
                             </div>
                             <div className={styles.buttonBar}>
-                                <button
-                                    onClick={() => addContainer(index)}
-                                    className={styles.addButton}
-                                >
-                                    <PlusCircle size={24} />
-                                </button>
-                                <button
-                                    onClick={() => deleteContainer(container)}
-                                    className={styles.deleteButton}
-                                >
-                                    <Trash2 size={24} />
-                                </button>
+                                <CustomTooltip content="コンテナを追加">
+                                    <button
+                                        onClick={() => addContainer(index)}
+                                        className={styles.addButton}
+                                    >
+                                        <PlusCircle size={24} />
+                                    </button>
+                                </CustomTooltip>
+                                <CustomTooltip content="コンテナを削除">
+                                    <button
+                                        onClick={() => deleteContainer(container)}
+                                        className={styles.deleteButton}
+                                    >
+                                        <Trash2 size={24} />
+                                    </button>
+                                </CustomTooltip>
                             </div>
                         </div>
                     ))}
                     {containers.length === 0 && (
-                        <button
-                            onClick={() => addContainer(-1)}
-                            className={`${styles.emptyStateButton} ${theme === 'dark' ? styles.darkEmptyStateButton : styles.lightEmptyStateButton}`}
-                        >
-                            <PlusCircle size={24} className="mr-2" />
-                            Add Container
-                        </button>
+                        <CustomTooltip content="コンテナを追加">
+                            <button
+                                onClick={() => addContainer(-1)}
+                                className={`${styles.emptyStateButton} ${theme === 'dark' ? styles.darkEmptyStateButton : styles.lightEmptyStateButton}`}
+                            >
+                                <PlusCircle size={24} className="mr-2" />
+                                Add Container
+                            </button>
+                        </CustomTooltip>
                     )}
                 </div>
                 {/* Divider */}
