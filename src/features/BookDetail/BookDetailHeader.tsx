@@ -1,14 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { IoMdArrowBack, IoMdSettings } from 'react-icons/io';
+import { IoMdArrowBack } from 'react-icons/io';
 import { FaSave } from 'react-icons/fa';
 import { Button } from "@/components/ui/button";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useTheme } from '@/contexts/theme/useTheme';
 import CustomTooltip from '@/components/elements/CustomTooltip';
 import SettingsDropdown from '@/components/elements/SettingsDropdown';
@@ -41,7 +35,10 @@ const BookDetailHeader: React.FC<BookDetailHeaderProps> = ({ onSave }) => {
     };
 
     return (
-        <header className={`fixed top-0 left-0 right-0 z-10 flex justify-between items-center p-4 ${theme === 'dark' ? 'bg-[#2E2E2E] text-white' : 'bg-[#ebebeb] text-black'}`}>
+        <header className={`fixed top-0 left-0 right-0 z-10 flex justify-between items-center h-16 p-4 ${theme === 'dark'
+            ? 'bg-[#2E2E2E] text-white border-b border-gray-700'
+            : 'bg-[#ebebeb] text-black border-b border-gray-300'
+            }`}>
             <CustomTooltip content="戻る">
                 <Button variant="ghost" onClick={handleGoBack} className="p-2">
                     <IoMdArrowBack size={34} />
