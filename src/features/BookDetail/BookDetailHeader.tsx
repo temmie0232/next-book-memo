@@ -44,25 +44,16 @@ const BookDetailHeader: React.FC<BookDetailHeaderProps> = ({ onSave }) => {
         <header className={`fixed top-0 left-0 right-0 z-10 flex justify-between items-center p-4 ${theme === 'dark' ? 'bg-[#2E2E2E] text-white' : 'bg-[#ebebeb] text-black'}`}>
             <CustomTooltip content="戻る">
                 <Button variant="ghost" onClick={handleGoBack} className="p-2">
-                    <IoMdArrowBack size={24} />
+                    <IoMdArrowBack size={34} />
                 </Button>
             </CustomTooltip>
             <div className="flex items-center space-x-2">
                 <CustomTooltip content="保存">
                     <Button variant="ghost" onClick={onSave} className="p-2">
-                        <FaSave size={20} />
+                        <FaSave size={34} />
                     </Button>
                 </CustomTooltip>
-                <DropdownMenu>
-                    <CustomTooltip content="設定">
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="p-2">
-                                <IoMdSettings size={24} />
-                            </Button>
-                        </DropdownMenuTrigger>
-                    </CustomTooltip>
-                    {/*<SettingsDropdown onLogout={handleLogout}>  なぜかここを追加するとページが遷移しない*/}
-                </DropdownMenu>
+                <SettingsDropdown onLogout={handleLogout} />
             </div>
         </header>
     );
