@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff;
+    background: #fbfbfb;
     padding: 10px 5%; 
     transition: 0.5s;
     box-sizing: border-box;
@@ -15,7 +15,7 @@
 }
 
 .dark {
-    background: #000;
+    background: #222222;
     color: #fff;
 }
 
