@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 import styles from './style.module.css';
 
 export default function Home() {
-  const { user, loading, authChecked } = useAuth();
+  const { user, loading, authChecked } = useAuth(false);
   const { theme } = useTheme();
 
   // 認証状態のロード中 => Loading... と表示  
