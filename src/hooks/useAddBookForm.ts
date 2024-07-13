@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { addBook } from '@/utils/bookManager';
-import { BookData } from '@/types/book.types';
+import { Book } from '@/types/book.types';
 
 /**
  * 本の追加フォームのロジックを管理するカスタムフック
@@ -62,7 +62,7 @@ export const useAddBookForm = () => {
         if (!isValid) return false;
 
         // BookDataオブジェクトの作成
-        const bookData: BookData = {
+        const bookData: Book = {
             title: title.trim(),
             author: author,
             genreId: genre,
@@ -70,6 +70,7 @@ export const useAddBookForm = () => {
             endDate: endDate,
             status: status as 'not-started' | 'in-progress' | 'completed', // null の可能性を排除
             rating: rating,
+            id: ''
         };
 
         try {

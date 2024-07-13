@@ -1,6 +1,6 @@
 import { db } from '~/firebase';
 import { collection, addDoc, doc, getDocs, updateDoc, getDoc } from 'firebase/firestore';
-import { Book, BookData } from '@/types/book.types';
+import { Book } from '@/types/book.types';
 import { getAuth } from 'firebase/auth';
 
 /**
@@ -10,7 +10,7 @@ import { getAuth } from 'firebase/auth';
  * @param bookData - 追加する本のデータ
  * @returns 追加された本のドキュメントID
  */
-export const addBook = async (userId: string, bookData: BookData): Promise<string> => {
+export const addBook = async (userId: string, bookData: Book): Promise<string> => {
     try {
         // ユーザーのドキュメント参照を取得
         const userDocRef = doc(db, 'users', userId);
