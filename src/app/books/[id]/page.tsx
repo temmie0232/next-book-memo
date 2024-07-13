@@ -4,14 +4,15 @@ import React from 'react';
 import { useTheme } from '@/contexts/theme/useTheme';
 import BookDetailHeader from '@/features/BookDetail/BookDetailHeader/BookDetailHeader';
 import { useAuth } from '@/hooks/useAuth';
-import { PlusCircle } from 'lucide-react';
 import styles from './style.module.css';
-import CustomTooltip from '@/components/elements/CustomTooltip';
 import { useParams } from 'next/navigation';
 import { useBookDetail } from '@/hooks/useBookDetail';
 import { useContainers } from '@/hooks/useContainers';
 import ContainerItem from '@/features/BookDetail/ContainerItem/ContainerItem';
 import DeleteDialog from '@/features/BookDetail/DeleteDialog/DeleteDialog';
+import { CustomArea } from '@/features/BookDetail/CustomArea/CustomArea';
+import CustomTooltip from '@/components/elements/CustomTooltip';
+import { PlusCircle } from 'lucide-react';
 
 const BookDetailPage: React.FC = () => {
     const { theme } = useTheme();
@@ -62,15 +63,14 @@ const BookDetailPage: React.FC = () => {
                                 className={`${styles.emptyStateButton} ${theme === 'dark' ? styles.darkEmptyStateButton : styles.lightEmptyStateButton}`}
                             >
                                 <PlusCircle size={24} className="mr-2" />
-                                Add Container
+                                コンテナを追加
                             </button>
                         </CustomTooltip>
                     )}
                 </div>
                 <div className={styles.divider} />
                 <div className={`${styles.customArea} ${theme === 'dark' ? styles.darkCustomArea : styles.lightCustomArea}`}>
-                    <h2 className="text-xl font-bold mb-4">カスタムエリア</h2>
-                    <p>後で実装するね</p>
+                    <CustomArea />
                 </div>
             </div>
             <DeleteDialog
