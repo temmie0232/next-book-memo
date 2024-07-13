@@ -8,7 +8,7 @@ import AutoResizeTextArea from '../AutoResizeTextArea/AutoResizeTextArea';
 interface ContainerItemProps {
     container: Container;
     index: number;
-    updateContainer: (id: number, field: 'title' | 'content', value: string) => void;
+    updateContainer: (id: string, field: 'title' | 'content', value: string) => void;
     deleteContainer: (container: Container) => void;
     addContainer: (index: number) => void;
     theme: string;

@@ -1,6 +1,4 @@
-"use client"
-
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { IoMdArrowBack } from 'react-icons/io';
 import { FaEdit } from 'react-icons/fa';
@@ -13,6 +11,7 @@ import { signOut } from 'firebase/auth';
 import { Book } from '@/types/book.types';
 import BookInfoDialog from '../BookInfoDialog/BookInfoDialog';
 import EditBookDialog from '../EditBookDialog/EditBookDialog';
+import { useContainers } from '@/hooks/useContainers';
 
 interface BookDetailHeaderProps {
     book: Book;
@@ -22,8 +21,9 @@ interface BookDetailHeaderProps {
 const BookDetailHeader: React.FC<BookDetailHeaderProps> = ({ book, onSave }) => {
     const router = useRouter();
     const { theme } = useTheme();
-    const [infoDialogOpen, setInfoDialogOpen] = useState(false);
-    const [editDialogOpen, setEditDialogOpen] = useState(false);
+    const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
+    const [editDialogOpen, setEditDialogOpen] = React.useState(false);
+    const { containers, addContainer, updateContainer, deleteContainer } = useContainers(book.id);
 
     const handleGoBack = () => {
         router.back();

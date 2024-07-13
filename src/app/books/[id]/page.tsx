@@ -30,7 +30,7 @@ const BookDetailPage: React.FC = () => {
         setDeleteDialogOpen,
         containerToDelete,
         confirmDelete
-    } = useContainers();
+    } = useContainers(id);
 
     if (loading || !authChecked) {
         return <div>Loading...</div>;

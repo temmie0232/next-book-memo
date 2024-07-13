@@ -1,9 +1,8 @@
-
 export interface Container {
-    id: number;
+    id: string;
     title: string;
     content: string;
-    isModified?: boolean;
+    order: number;
 }
 
-export type ContainerUpdateField = 'title' | 'content';
+export type ContainerUpdateField = 'title' | 'content' | 'order';
