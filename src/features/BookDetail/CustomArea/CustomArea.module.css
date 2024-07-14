@@ -1,0 +1,29 @@
+.customArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.mainContent {
+    margin-top: 2rem;
+    width: 83.333333%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addButton {
+    position: fixed;
+    bottom: 3rem;
+    right: 5.5rem;
+    border-radius: 9999px;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+}
+
+.addButtonIcon {
+    height: 2.5rem;
+    width: 2.5rem;
+}

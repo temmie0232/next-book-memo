@@ -34,7 +34,7 @@
 
 .text {
     color: #000000;
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 700;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .inputs {
-    margin-top: 55px;
+    margin-top: 42px;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -98,7 +98,7 @@
     align-items: center;
     width: 80%;
     height: 59px;
-    margin: 40px auto 30px;
+    margin: 30px auto 15px;
     color: #fff;
     background: #2c79b9;
     border-radius: 50px;
@@ -118,7 +118,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 30px auto;
+    margin: 10px auto;
     width: 100%;
     max-width: 480px;
 }
@@ -144,7 +144,7 @@
     align-items: center;
     width: 80%;
     height: 59px;
-    margin: 30px auto 20px;
+    margin: 15px auto 20px;
     color: #2c79b9;
     background: #fff;
     border: 2px solid #2c79b9;
@@ -169,7 +169,7 @@
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 20px;
     background: #ffffff;
     border-radius: 50px;
@@ -280,3 +280,4 @@
         width: 100%;
     }
 }
+

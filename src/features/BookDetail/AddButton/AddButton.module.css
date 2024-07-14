@@ -1,0 +1,33 @@
+.addButton {
+    position: fixed;
+    bottom: 3rem;
+    right: 5.5rem;
+    border-radius: 9999px;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.addButtonIcon {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.lightTheme {
+    background-color: black;
+    color: white;
+}
+
+.lightTheme:hover {
+    background-color: #333;
+}
+
+.darkTheme {
+    background-color: white;
+    color: black;
+}
+
+.darkTheme:hover {
+    background-color: #e0e0e0;
+}

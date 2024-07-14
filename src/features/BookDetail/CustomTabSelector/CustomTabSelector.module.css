@@ -1,0 +1,21 @@
+.tabSelector {
+    width: 60%;
+    margin-bottom: 1rem;
+}
+
+.tabsList {
+    background-color: transparent;
+    
+}
+
+.tabsTrigger {
+    background-color: transparent;
+    color: inherit;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tabsTrigger[data-state="active"] {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
