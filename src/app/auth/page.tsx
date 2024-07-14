@@ -1,7 +1,7 @@
 "use client"
 
 import { useTheme } from '@/contexts/theme/useTheme';
-import LoginForm from '@/features/LoginForm/LoginForm';
+import LoginForm from '@/features/auth/LoginForm/LoginForm';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './style.module.css';
 
