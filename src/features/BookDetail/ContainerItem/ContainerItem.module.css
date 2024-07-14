@@ -24,6 +24,7 @@
 
 .containerTitle {
     position: absolute;
+        width: 80%; /* または必要な幅に応じて調整 */
     top: 0.2rem;
     left: 0.5rem;
     padding: 0 0.6rem;
