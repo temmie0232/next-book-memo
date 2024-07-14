@@ -46,9 +46,8 @@ export const useAddBookForm = () => {
      * @returns {Promise<boolean>} 送信が成功したかどうか
      */
     const handleSubmit = async () => {
-        if (!user) return false;  // ユーザーが未ログインの場合は処理を中断
+        if (!user) return null;
 
-        // タイトルと状態のバリデーション
         let isValid = true;
         if (!title.trim()) {
             setTitleError('タイトルは必須項目です');
@@ -59,29 +58,26 @@ export const useAddBookForm = () => {
             isValid = false;
         }
 
-        if (!isValid) return false;
+        if (!isValid) return null;
 
-        // BookDataオブジェクトの作成
-        const bookData: Book = {
+        const bookData: Omit<Book, 'id'> = {
             title: title.trim(),
-            author: author,
+            author,
             genreId: genre,
-            startDate: startDate,
-            endDate: endDate,
-            status: status as 'not-started' | 'in-progress' | 'completed', // null の可能性を排除
-            rating: rating,
-            id: ''
+            startDate,
+            endDate,
+            status: status as 'not-started' | 'in-progress' | 'completed',
+            rating,
         };
 
         try {
-            // Firestoreに本を追加
-            await addBook(user.uid, bookData);
+            const newBookId = await addBook(user.uid, bookData);
             console.log('本を追加しました:', title);
-            resetForm();  // フォームをリセット
-            return true;  // 成功
+            resetForm();
+            return newBookId;
         } catch (error) {
             console.error('本の追加に失敗しました:', error);
-            return false;  // 失敗
+            return null;
         }
     };
 

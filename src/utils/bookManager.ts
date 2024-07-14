@@ -10,25 +10,14 @@ import { getAuth } from 'firebase/auth';
  * @param bookData - 追加する本のデータ
  * @returns 追加された本のドキュメントID
  */
-export const addBook = async (userId: string, bookData: Book): Promise<string> => {
+export const addBook = async (userId: string, bookData: Omit<Book, 'id'>): Promise<string> => {
     try {
-        // ユーザーのドキュメント参照を取得
         const userDocRef = doc(db, 'users', userId);
-        // ユーザーの 'books' サブコレクションへの参照を取得
         const booksCollectionRef = collection(userDocRef, 'books');
 
-        // 評価が未設定の場合、nullとして扱う
-        const bookDataWithNullRating = {
-            ...bookData,
-            rating: bookData.rating || null
-        };
-
-        // 新しい本のドキュメントを追加
-        const docRef = await addDoc(booksCollectionRef, bookDataWithNullRating);
-        // 追加された本のドキュメントIDを返す
+        const docRef = await addDoc(booksCollectionRef, bookData);
         return docRef.id;
     } catch (error) {
-        // エラーが発生した場合はコンソールに出力し、エラーをスロー
         console.error('Error adding book:', error);
         throw new Error('Failed to add book');
     }

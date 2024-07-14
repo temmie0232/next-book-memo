@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./BookshelfRow.module.css";
-import { BookType } from '@/types/book.types';
+import { Book as BookType } from '@/types/book.types';
 import Book from '@/features/books/Book/Book';
 
 interface BookshelfRowProps {
