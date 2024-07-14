@@ -7,8 +7,8 @@ import { CustomSearchBar } from '../CustomSearchBar/CustomSearchBar';
 import { EditCustomContainerDialog } from '../EditCustomContainerDialog/EditCustomContainerDialog';
 import { CustomContainerItem } from '../CustomContainerItem/CustomContainerItem';
 import { AddCustomContainerDialog } from '../AddCustomContainerDialog/AddCustomContainerDialog';
-import { useCustomArea } from '@/hooks/useCustomArea';
 import { AddButton } from '../AddButton/AddButton';
+import { useCustomArea } from '@/hooks/useCustomArea';
 
 export const CustomArea: React.FC = () => {
     const { theme } = useTheme();
@@ -33,7 +33,10 @@ export const CustomArea: React.FC = () => {
 
     return (
         <div className={styles.customArea}>
-            <CustomTabSelector activeTab={activeTab} onTabChange={setActiveTab} />
+            <CustomTabSelector
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+            />
             <Separator className={`my-4 w-full ${theme === 'dark' ? 'bg-[#858383]' : 'bg-[#EBEBEB]'}`} />
             <CustomSearchBar
                 searchTerm={searchTerm}
