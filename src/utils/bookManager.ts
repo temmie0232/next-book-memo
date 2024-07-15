@@ -1,5 +1,5 @@
 import { db } from '~/firebase';
-import { collection, addDoc, doc, getDocs, updateDoc, getDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDocs, updateDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import { Book } from '@/types/book.types';
 import { getAuth } from 'firebase/auth';
 
@@ -105,6 +105,27 @@ export const updateBook = async (userId: string, bookId: string, updatedBook: Pa
         await updateDoc(bookDocRef, updatedBook);
     } catch (error) {
         console.error('Error updating book:', error);
+        throw error;
+    }
+};
+
+/**
+ * 特定の本をFirestoreから削除する関数
+ * 
+ * @param userId - ユーザーID
+ * @param bookId - 削除する本のID
+ * @returns {Promise<void>}
+ */
+export const deleteBook = async (userId: string, bookId: string): Promise<void> => {
+    try {
+        // ユーザーのドキュメント参照を取得
+        const userDocRef = doc(db, 'users', userId);
+        // 削除する本のドキュメント参照を取得
+        const bookDocRef = doc(userDocRef, 'books', bookId);
+        // 本のドキュメントを削除
+        await deleteDoc(bookDocRef);
+    } catch (error) {
+        console.error('Error deleting book:', error);
         throw error;
     }
 };
