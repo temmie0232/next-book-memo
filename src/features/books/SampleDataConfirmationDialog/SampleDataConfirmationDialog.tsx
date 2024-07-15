@@ -21,11 +21,14 @@ const SampleDataConfirmationDialog: React.FC<SampleDataConfirmationDialogProps> 
     const [useSampleData, setUseSampleData] = useState(true);
 
     const handleConfirm = async () => {
+        const userRef = doc(db, 'users', userId);
         if (useSampleData) {
             await addSampleData(userId);
         }
-        const userRef = doc(db, 'users', userId);
-        await updateDoc(userRef, { isNewUser: false });
+        await updateDoc(userRef, {
+            isNewUser: false,
+            initialized: true
+        });
         onConfirm();
     };
 

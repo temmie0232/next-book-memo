@@ -4,12 +4,10 @@ import { sampleBooks } from '@/data/sampleBooks';
 import { sampleGenres } from '@/data/sampleGenres';
 
 export const addSampleData = async (userId: string) => {
-    // バッチ処理を開始
     const batch = writeBatch(db);
     const userDocRef = doc(db, 'users', userId);
 
     // サンプルジャンルの追加
-    // ここではバッチ処理を使用せず、直接ユーザードキュメントを更新
     await setDoc(userDocRef, { genres: sampleGenres }, { merge: true });
 
     // サンプル本の追加
