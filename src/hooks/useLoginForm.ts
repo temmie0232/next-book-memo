@@ -58,7 +58,6 @@ export const useLoginForm = () => {
                 // ユーザー登録
                 if (action === "ユーザー登録") {
                     await signUp(formValues.email, formValues.password, formValues.username);
-                    alert("ユーザー登録が完了しました！\n画面が切り替わります。");
                     setFormValues(initialValues);
                 }
                 // ログイン

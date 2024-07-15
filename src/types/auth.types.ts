@@ -4,8 +4,8 @@ export interface UserData {
     email: string | null;
     displayName: string | null;
     initialized: boolean;
-    genresInitialized: boolean;
     genres: string[];
+    isNewUser: boolean;
 }
 
 export interface AuthFunctions {
