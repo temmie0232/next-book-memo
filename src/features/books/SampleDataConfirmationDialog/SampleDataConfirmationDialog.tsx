@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import {
     Dialog,
@@ -28,6 +28,20 @@ interface SampleDataConfirmationDialogProps {
 
 const SampleDataConfirmationDialog: React.FC<SampleDataConfirmationDialogProps> = ({ userId, onConfirm }) => {
     const [useSampleData, setUseSampleData] = useState(true);
+    const [imageSize, setImageSize] = useState({ width: 800, height: 480 });
+
+    useEffect(() => {
+        const updateImageSize = () => {
+            const maxWidth = Math.min(window.innerWidth * 0.8, 800);
+            const aspectRatio = 480 / 800;
+            const height = maxWidth * aspectRatio;
+            setImageSize({ width: maxWidth, height });
+        };
+
+        updateImageSize();
+        window.addEventListener('resize', updateImageSize);
+        return () => window.removeEventListener('resize', updateImageSize);
+    }, []);
 
     const handleConfirm = async () => {
         const userRef = doc(db, 'users', userId);
@@ -50,7 +64,7 @@ const SampleDataConfirmationDialog: React.FC<SampleDataConfirmationDialogProps> 
         {
             image: b,
             alt: "サンプルデータ解説画像2",
-            description: "サンプルの本を使って、ステータス(未読・読書中・完読)やジャンルによるソートの方法を学べます。サンプルの本を通じて、本の管理方法を理解できます。"
+            description: "サンプルの本とジャンルを使って、ステータス(未読・読書中・完読)やジャンルによるソートの方法を学べます。サンプルの本を通じて、本の管理方法を理解できます。"
         },
         {
             image: c,
@@ -81,23 +95,24 @@ const SampleDataConfirmationDialog: React.FC<SampleDataConfirmationDialogProps> 
 
     return (
         <Dialog open={true}>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="w-[80vw] max-w-[900px]">
                 <DialogHeader>
-                    <DialogTitle>サンプルデータを使用しますか？</DialogTitle>
+                    <DialogTitle className='text-3xl'>サンプルデータを使用しますか？</DialogTitle>
                 </DialogHeader>
-                <Carousel className="w-full max-w-xs">
+                <Carousel className="w-full max-w-4xl mx-auto">
                     <CarouselContent>
                         {carouselItems.map((item, index) => (
                             <CarouselItem key={index}>
                                 <div className="p-1">
-                                    <p className="text-sm mb-2">{item.description}</p>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.alt}
-                                        width={300}
-                                        height={200}
-                                        layout="responsive"
-                                    />
+                                    <p className="text-base mb-2">{item.description}</p>
+                                    <div className="relative" style={{ width: '100%', paddingBottom: '60%' }}>
+                                        <Image
+                                            src={item.image}
+                                            alt={item.alt}
+                                            layout="fill"
+                                            objectFit="contain"
+                                        />
+                                    </div>
                                 </div>
                             </CarouselItem>
                         ))}
@@ -105,7 +120,7 @@ const SampleDataConfirmationDialog: React.FC<SampleDataConfirmationDialogProps> 
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 mt-4">
                     <Switch
                         checked={useSampleData}
                         onCheckedChange={setUseSampleData}
@@ -115,7 +130,7 @@ const SampleDataConfirmationDialog: React.FC<SampleDataConfirmationDialogProps> 
                         {useSampleData ? '使用する' : '使用しない'}
                     </span>
                 </div>
-                <Button onClick={handleConfirm}>
+                <Button onClick={handleConfirm} className="mt-4">
                     次のページへ
                 </Button>
             </DialogContent>
