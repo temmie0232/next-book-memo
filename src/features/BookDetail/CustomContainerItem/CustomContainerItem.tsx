@@ -32,6 +32,8 @@ export const CustomContainerItem: React.FC<CustomContainerItemProps> = ({ contai
                         >
                             {container.title}
                         </AccordionTrigger>
+                        {/* 区切り線を追加 - ダークモード時の色を縁線と合わせる */}
+                        <div className={`h-px w-full ${theme === 'dark' ? 'bg-[#A0A0A0]' : 'bg-gray-300'}`} />
                         <AccordionContent className={styles.accordionContent}>
                             <div className="whitespace-pre-wrap">{container.content}</div>
                         </AccordionContent>
