@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@/contexts/theme/useTheme';
 import BookDetailHeader from '@/features/BookDetail/BookDetailHeader/BookDetailHeader';
 import { useAuth } from '@/hooks/useAuth';
@@ -31,6 +31,14 @@ const BookDetailPage: React.FC = () => {
         containerToDelete,
         confirmDelete
     } = useContainers(id);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (book && containers.length > 0) {
+            setIsLoading(false);
+        }
+    }, [book, containers]);
 
     if (loading || !authChecked) {
         return <div>Loading...</div>;
