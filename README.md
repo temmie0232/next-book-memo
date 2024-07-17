@@ -1,5 +1,6 @@
-# [BookMemo](next-book-memo.vercel.app
-)
+# BookMemo
+
+[BookMemo](next-book-memo.vercel.app)
 
 読書体験を豊かにする知識整理のためのWebアプリ：本の要点、登場人物、印象的な引用を簡単に記録・整理できるデジタルノート <br>
 
