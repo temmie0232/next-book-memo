@@ -19,17 +19,36 @@
 
 ## 仕様
 
-言語: TypeScript
-フレームワーク: Next.js (Reactベース)
-スタイリング: CSS Modules　/ Tailwind CSS
+### 主要技術スタック
 
-バックエンド/データベース: Firebase / Authentication (認証) / Firestore (データベース)
+- **言語:** TypeScript
+- **フレームワーク:** Next.js (Reactベース)
 
-UI コンポーネント: shadcn/ui (カスタムUIコンポーネントライブラリ)
+### フロントエンド
 
-アイコン: React Icons / Lucide React
+#### スタイリング
+- CSS Modules
+- Tailwind CSS
 
-その他のライブラリ: lodash (ユーティリティ関数) / react-firebase-hooks (Firebase用Reactフック)
+#### UIコンポーネント
+- shadcn/ui (カスタムUIコンポーネントライブラリ)
+
+#### アイコン
+- React Icons
+- Lucide React
+
+### バックエンド
+
+#### Firebase
+- Authentication (認証)
+- Firestore (データベース)
+
+### その他のライブラリ
+
+- lodash (ユーティリティ関数)
+- react-firebase-hooks (Firebase用Reactフック)
+
+
 
 ### 機能
 
