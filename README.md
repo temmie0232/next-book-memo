@@ -1,5 +1,5 @@
 # BookMemo
-![image](https://github.com/user-atachments/assets/f59a445d-1ca4-4fbf-97da-a0954301365d)
+![image](https://github.com/user-attachments/assets/848f0ecd-b294-4617-87a3-64c68165cd29)
 
 [BookMemo](https://next-book-memo.vercel.app/)
 
