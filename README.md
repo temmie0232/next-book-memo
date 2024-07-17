@@ -19,9 +19,17 @@
 
 ## 仕様
 
-このアプリケーションは、読んだ本の記録ができるウェブアプリである。 <br>
-バックエンドはFirebaseで構築されており、フロントエンドはNext.jsを使用して作成されている。 <br>
-また、一部のUIにshadcn/uiを用いて開発している。 <br>
+言語: TypeScript
+フレームワーク: Next.js (Reactベース)
+スタイリング: CSS Modules　/ Tailwind CSS
+
+バックエンド/データベース: Firebase / Authentication (認証) / Firestore (データベース)
+
+UI コンポーネント: shadcn/ui (カスタムUIコンポーネントライブラリ)
+
+アイコン: React Icons / Lucide React
+
+その他のライブラリ: lodash (ユーティリティ関数) / react-firebase-hooks (Firebase用Reactフック)
 
 ### 機能
 
