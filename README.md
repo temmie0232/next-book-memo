@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/6ff7bf99-a48a-4aad-a5ee-e65a975479bf)# BookMemo
+# BookMemo
+![image](https://github.com/user-atachments/assets/f59a445d-1ca4-4fbf-97da-a0954301365d)
 
 [BookMemo](https://next-book-memo.vercel.app/)
 
@@ -58,8 +59,6 @@
 #### ログイン機能
 - メールアドレスとパスワードによるログイン
 - Googleアカウントを使用したソーシャルログイン
-- ![image](https://github.com/user-attachments/assets/ef7d5ba3-5410-4976-8861-e3b3c4b0b518)
-
 
 #### ユーザー登録
 - メールアドレス、パスワード、ユーザー名による新規アカウント作成
